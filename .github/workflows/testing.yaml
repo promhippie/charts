@@ -1,0 +1,58 @@
+---
+name: testing
+
+"on":
+  pull_request:
+
+jobs:
+  release:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout source
+        id: source
+        uses: actions/checkout@v2
+
+      - name: Setup helm
+        id: helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.7.1
+
+      - name: Setup Python
+        id: python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+
+      - name: Setup testing
+        id: setup
+        uses: helm/chart-testing-action@v2.0.1
+        with:
+          version: v3.3.0
+
+      - name: Detect testing
+        id: detect
+        run: |
+          CHANGED=$(ct list-changed --config ct.yaml)
+
+          if [[ -n "${CHANGED}" ]]; then
+            echo "::set-output name=changed::true"
+          fi
+
+      - name: Create kind
+        id: kind
+        if: steps.detect.outputs.changed == 'true'
+        uses: helm/kind-action@v1.1.0
+
+      - name: Run Linting
+        id: linting
+        run: |
+          ct lint --config ct.yaml
+
+      - name: Run testing
+        id: testing
+        run: |
+          ct install --config ct.yaml
+
+...

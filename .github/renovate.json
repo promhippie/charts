@@ -1,0 +1,53 @@
+{
+    "extends": [
+        "config:base",
+        ":dependencyDashboard",
+        ":automergeMinor",
+        ":automergeDigest"
+    ],
+    "regexManagers": [
+        {
+            "fileMatch": [
+                "Chart.yaml"
+            ],
+            "matchStrings": [
+                "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>.*?))?\nappVersion: (?<currentValue>.*)"
+            ]
+        }
+    ],
+    "packageRules": [
+        {
+            "description": "Semantic commits for major updates",
+            "groupName": "major updates",
+            "matchUpdateTypes": [
+                "major"
+            ],
+            "semanticCommitType": "major",
+            "semanticCommitScope": "deps",
+            "automerge": false
+        },
+        {
+            "description": "Semantic commits for minor updates",
+            "groupName": "minor updates",
+            "matchUpdateTypes": [
+                "minor"
+            ],
+            "semanticCommitType": "minor",
+            "semanticCommitScope": "deps",
+            "automerge": false
+        },
+        {
+            "description": "Semantic commits for patch updates",
+            "groupName": "patch updates",
+            "matchUpdateTypes": [
+                "patch"
+            ],
+            "semanticCommitType": "patch",
+            "semanticCommitScope": "deps",
+            "automerge": false
+        }
+    ],
+    "labels": [
+        "renovate"
+    ]
+}

@@ -1,0 +1,92 @@
+{{- if and .Values.config.token .Values.config.tokenSecret -}}
+{{ fail (printf "ERROR: only one of .Values.config.token or .Values.config.tokenSecret must be defined") }}
+{{- end -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "github-exporter.fullname" . }}
+  labels:
+    {{- include "github-exporter.labels" . | nindent 4 }}
+  annotations:
+    {{- toYaml .Values.annotations | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "github-exporter.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "github-exporter.labels" . | nindent 8 }}
+      annotations:
+        {{- toYaml .Values.annotations | nindent 8 }}
+    spec:
+      serviceAccountName: {{ include "github-exporter.serviceAccountName" . }}
+      {{- if .Values.image.pullSecrets }}
+      imagePullSecrets:
+      {{- range .Values.image.pullSecrets }}
+        - name: {{ . }}
+      {{- end}}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          env:
+            {{- range $key, $value := .Values.extraEnvSecrets }}
+            - name: {{ $key }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ required "Must specify secret!" $value.secret }}
+                  key: {{ required "Must specify key!" $value.key }}
+            {{- end }}
+            {{- range $key, $value := .Values.extraEnvVariables }}
+            - name: {{ $key }}
+              value: "{{ $value }}"
+            {{- end }}
+          envFrom:
+          {{- if .Values.config.tokenSecret }}
+            - secretRef:
+                name: {{ .Values.tokenSecret }}
+          {{- else }}
+          {{- if  .Values.config.token }}
+            - secretRef:
+                name: {{ template "github-exporter.fullname" . }}
+          {{- end }}
+          {{- end }}
+          {{- if .Values.envFromSecret }}
+            - secretRef:
+                name: {{ .Values.envFromSecret }}
+          {{- end }}
+          {{- if .Values.envFromConfigMap }}
+            - configMapRef:
+                name: {{ .Values.envFromConfigMap }}
+          {{- end }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.internalPort }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- if .Values.nodeSelector }}
+      nodeSelector:
+        {{ toYaml .Values.nodeSelector | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{ toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{ toYaml . | nindent 8 }}
+      {{- end }}

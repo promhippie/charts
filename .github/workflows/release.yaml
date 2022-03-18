@@ -1,0 +1,30 @@
+---
+name: release
+
+"on":
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout source
+        id: source
+        uses: actions/checkout@v2
+
+      - name: Setup helm
+        id: helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.7.1
+
+      - name: Run releaser
+        id: releaser
+        uses: helm/chart-releaser-action@v1.2.1
+        env:
+          CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+...
