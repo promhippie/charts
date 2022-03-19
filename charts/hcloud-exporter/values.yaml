@@ -1,22 +1,40 @@
 ---
+# -- Override the name
 nameOverride: ""
+
+# -- Override the fullname
 fullnameOverride: ""
 
+# -- Replicas for the deployment
 replicaCount: 1
 
 image:
+  # -- Image repository used by deployment
   repository: quay.io/promhippie/hcloud-exporter
+
+  # -- Optional tag for the repository, defaults to app version
   tag: ""
+
+  # -- Image pull policy
   pullPolicy: IfNotPresent
+
+  # -- Optional name of pull secret if using a private registry
   pullSecrets: []
 
 serviceAccount:
+  # -- Create a new service account
   create: true
+
+  # -- Optional name for an existing service account
   name: ""
 
+# -- Define additional labels
 labels: {}
+
+# -- Define additional annotations
 annotations: {}
 
+# -- Security context for the deployment
 securityContext:
   runAsGroup: 10000
   runAsUser: 10000
@@ -27,15 +45,25 @@ securityContext:
     drop: ["all"]
 
 service:
+  # -- Type of the service
   type: ClusterIP
+
+  # -- Port of the service
   port: 9501
+
+  # -- Internal port of the service
   internalPort: 9501
+
+  # -- Additional annotations for the service
   annotations: {}
+
+  # -- Additional labels for the service
   labels: {}
     # prometheus.io/path: /metrics
     # prometheus.io/port: "9501"
     # prometheus.io/scrape: "true"
 
+# -- Resources for the deployment
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -48,37 +76,76 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
+# -- Node selector for the deployment
 nodeSelector: {}
 
+# -- Affinity for the deployment
 affinity: {}
 
+# -- Tolerations for the deployment
 tolerations: []
 
 serviceMonitor:
+  # -- Enable service monitor integration
   enabled: false
+
+  # -- Namespace used by service monitor
   namespace: ""
+
+  # -- Additional labels for the service monitor
   labels: {}
+
+  # -- Scrape interval
   interval: 30s
+
+  # -- Scrape path
   telemetryPath: /metrics
+
+  # -- Scrape timeout
   timeout: 30s
+
+  # -- Metric relabeling configuration
   metricRelabelings: []
+
+  # -- Relabeling configuration
   relabelings: []
+
+  # -- Target labels
   targetLabels: []
 
 prometheusRule:
+  # -- Enable custom prometheus rules
   enabled: false
+
+  # -- Namespace used by prometheus rules
   namespace: ""
+
+  # -- Additional labels for prometheus rules
   additionalLabels: {}
+
+  # -- Rules definition
   rules: []
 
+# -- environment variables from existing secret
 envFromSecret: ""
+
+# -- Environment variables from existing configmap
 envFromConfigMap: ""
 
+# -- Extra environment variables from mapping
 extraEnvVariables: {}
+
+# -- Extra environment variables from secrets
 extraEnvSecrets: {}
 
 config:
+  # -- Access token for Hetzner Cloud
   token:
+
+  # -- Access token from an existing secret
   tokenSecret:
+
+  # -- Key used within tokenSecret
+  secretKey:
 
 ...
