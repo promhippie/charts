@@ -46,15 +46,15 @@ spec:
             - name: {{ $key }}
               value: "{{ $value }}"
             {{- end }}
-          envFrom:
-          {{- if .Values.config.tokenSecret }}
+            {{- if .Values.config.tokenSecret }}
             - secretRef:
-                name: {{ .Values.tokenSecret }}
-          {{- else }}
+                name: {{ .Values.config.tokenSecret }}
+                key: {{ .Values.config.secretKey }}
+            {{- end }}
+          envFrom:
           {{- if  .Values.config.token }}
             - secretRef:
                 name: {{ template "github-exporter.fullname" . }}
-          {{- end }}
           {{- end }}
           {{- if .Values.envFromSecret }}
             - secretRef:
