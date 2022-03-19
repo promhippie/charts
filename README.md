@@ -1,6 +1,6 @@
 # Charts
 
-[![Release Build](https://github.com/promhippie/charts/workflows/release/badge.svg)](https://github.com/promhippie/charts/actions?query=workflow%3Arelease) [![Join the Matrix chat at https://matrix.to/#/#webhippie:matrix.org](https://img.shields.io/badge/matrix-%23webhippie-7bc9a4.svg)](https://matrix.to/#/#webhippie:matrix.org)
+[![Release Build](https://github.com/promhippie/charts/workflows/release/badge.svg)](https://github.com/promhippie/charts/actions?query=workflow%3Arelease) [![Join the Matrix chat at https://matrix.to/#/#webhippie:matrix.org](https://img.shields.io/badge/matrix-%23webhippie-7bc9a4.svg)](https://matrix.to/#/#webhippie:matrix.org) [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/promhippie)](https://artifacthub.io/packages/search?repo=promhippie)
 
 Definition and publishing of Helm charts to install all the tools built within
 the Promhippie GitHub organization.
