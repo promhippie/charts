@@ -29,7 +29,7 @@ jobs:
         id: setup
         uses: helm/chart-testing-action@v2.2.1
         with:
-          version: v3.3.0
+          version: v3.4.0
 
       - name: Detect testing
         id: detect

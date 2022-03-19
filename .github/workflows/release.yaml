@@ -19,7 +19,7 @@ jobs:
         id: helm
         uses: azure/setup-helm@v1
         with:
-          version: v3.7.1
+          version: v3.7.2
 
       - name: Run releaser
         id: releaser
