@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Checkout source
         id: source
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup helm
         id: helm
@@ -21,7 +21,7 @@ jobs:
 
       - name: Setup Python
         id: python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: 3.7
 
