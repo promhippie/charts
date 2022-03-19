@@ -12,6 +12,8 @@ jobs:
       - name: Checkout source
         id: source
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Setup helm
         id: helm
