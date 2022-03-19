@@ -15,11 +15,11 @@ jobs:
         id: source
         uses: actions/checkout@v3
 
-      - name: Setup helm
-        id: helm
-        uses: azure/setup-helm@v1
-        with:
-          version: v3.7.2
+      - name: Configure git
+        id: git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
       - name: Run releaser
         id: releaser
