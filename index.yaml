@@ -87,6 +87,28 @@ entries:
     version: 1.0.0
   hcloud-exporter:
   - apiVersion: v2
+    appVersion: 1.2.2
+    created: "2022-05-14T10:03:11.653730529Z"
+    description: A Helm chart for hcloud-exporter
+    digest: 40ffe7c2a56704ab95bbbcb833f894b6da4fd415d36d61fe64898103f71d10be
+    home: https://promhippie.github.io/hcloud_exporter/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hetzner.svg
+    keywords:
+    - hetzner
+    - hcloud
+    - prometheus
+    - exporter
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: hcloud-exporter
+    sources:
+    - https://github.com/promhippie/hcloud_exporter
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/hcloud-exporter-1.1.1/hcloud-exporter-1.1.1.tgz
+    version: 1.1.1
+  - apiVersion: v2
     appVersion: 1.2.0
     created: "2022-05-11T13:27:21.306486354Z"
     description: A Helm chart for hcloud-exporter
@@ -174,4 +196,4 @@ entries:
     urls:
     - https://github.com/promhippie/charts/releases/download/hcloud-exporter-1.0.0/hcloud-exporter-1.0.0.tgz
     version: 1.0.0
-generated: "2022-05-11T13:27:21.306527855Z"
+generated: "2022-05-14T10:03:11.653749529Z"
