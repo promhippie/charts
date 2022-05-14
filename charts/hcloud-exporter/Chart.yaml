@@ -7,7 +7,7 @@ type: application
 
 # renovate: datasource=docker depName=quay.io/promhippie/hcloud-exporter
 appVersion: 1.2.2
-version: 1.1.0
+version: 1.1.1
 
 home: https://promhippie.github.io/hcloud_exporter/
 icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hetzner.svg
