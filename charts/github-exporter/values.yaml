@@ -134,6 +134,7 @@ envFromConfigMap: ""
 
 # -- Extra environment variables from mapping
 extraEnvVariables: {}
+#  GITHUB_EXPORTER_REPO: 'your-github-account/*' # uncomment and replace 'your-github-account' and it will export all your github repos
 
 # -- Extra environment variables from secrets
 extraEnvSecrets: {}
