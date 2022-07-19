@@ -1,7 +1,7 @@
 ---
 repository:
   name: charts
-  description: Helm charts for projects by Promhippie
+  description: Helm charts for Promhippie projects
   homepage: https://artifacthub.io/packages/search?repo=promhippie
   topics: kubernetes, helm, charts, helm-charts, prometheus
 

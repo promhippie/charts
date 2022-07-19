@@ -4,6 +4,6 @@ Make sure to target the master branch, describe what your pull requests does and
 which issue you are solving (if any). Please read our contributing guidelines as
 well:
 
-  https://github.com/promhippie/hcloud_exporter/blob/master/CONTRIBUTING.md
+  https://github.com/promhippie/charts/blob/master/CONTRIBUTING.md
 
 -->

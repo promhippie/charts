@@ -3,6 +3,8 @@ name: testing
 
 "on":
   pull_request:
+    branches:
+      - master
 
 jobs:
   testing:
@@ -21,7 +23,7 @@ jobs:
         with:
           version: v3.7.1
 
-      - name: Setup Python
+      - name: Setup python
         id: python
         uses: actions/setup-python@v4
         with:
