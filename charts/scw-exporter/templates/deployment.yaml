@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "scw-exporter.labels" . | nindent 4 }}
   annotations:
-{{- if not .Values.config.existingSecret -}}
+{{- if not .Values.config.existingSecret }}
     checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
 {{- end }}
 {{- if  .Values.annotations }}
