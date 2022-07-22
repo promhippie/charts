@@ -1,0 +1,28 @@
+---
+apiVersion: v2
+
+name: scw-exporter
+description: A Helm chart for scw-exporter
+type: application
+
+# renovate: datasource=docker depName=quay.io/promhippie/scw-exporter
+appVersion: 0.1.0
+version: 1.0.0
+
+home: https://promhippie.github.io/scw_exporter/
+icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/scaleway.svg
+
+keywords:
+  - scw
+  - scaleway
+  - prometheus
+  - exporter
+
+sources:
+  - https://github.com/promhippie/scw_exporter
+
+maintainers:
+  - name: tboerger
+    email: thomas@webhippie.de
+
+...
