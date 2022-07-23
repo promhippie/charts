@@ -7,7 +7,7 @@ metadata:
   namespace: {{ . }}
 {{- end }}
   labels:
-    {{ include "hcloud-exporter.labels" . | nindent 4 }}
+{{ include "hcloud-exporter.labels" . | indent 4 }}
 {{- with .Values.prometheusRule.additionalLabels }}
     {{ toYaml . | nindent 4 }}
 {{- end }}

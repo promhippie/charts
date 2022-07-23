@@ -56,12 +56,12 @@ service:
 
   # -- Additional annotations for the service
   annotations: {}
-
-  # -- Additional labels for the service
-  labels: {}
     # prometheus.io/path: /metrics
     # prometheus.io/port: "9501"
     # prometheus.io/scrape: "true"
+
+  # -- Additional labels for the service
+  labels: {}
 
 # -- Resources for the deployment
 resources: {}
@@ -113,6 +113,9 @@ serviceMonitor:
   # -- Target labels
   targetLabels: []
 
+  # -- Optionally override the job label
+  jobLabel:
+
 prometheusRule:
   # -- Enable custom prometheus rules
   enabled: false
@@ -140,12 +143,12 @@ extraEnvSecrets: {}
 
 config:
   # -- Access token for Hetzner Cloud
-  token:
+  token: ""
 
-  # -- Access token from an existing secret
-  tokenSecret:
+  # -- Key used within secret for token
+  tokenKey: token
 
-  # -- Key used within tokenSecret
-  secretKey:
+  # -- Existing secret to use for credentials
+  existingSecret:
 
 ...

@@ -1,5 +1,4 @@
-{{- if $.Values.serviceMonitor }}
-{{- if and ( .Capabilities.APIVersions.Has "monitoring.coreos.com/v1" ) ( .Values.serviceMonitor.enabled ) }}
+{{- if .Values.serviceMonitor.enabled }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
@@ -7,9 +6,10 @@ metadata:
 {{- if .Values.serviceMonitor.namespace }}
   namespace: {{ .Values.serviceMonitor.namespace }}
 {{- end }}
-{{- if .Values.serviceMonitor.labels }}
   labels:
-    {{ toYaml .Values.serviceMonitor.labels | nindent 4}}
+{{ include "hcloud-exporter.labels" . | indent 4 }}
+{{- with .Values.serviceMonitor.labels }}
+    {{ toYaml . | nindent 4 }}
 {{- end }}
 spec:
   endpoints:
@@ -31,18 +31,17 @@ spec:
     relabelings:
 {{ toYaml .Values.serviceMonitor.relabelings | indent 4 }}
 {{- end }}
-  jobLabel: {{ template "hcloud-exporter.fullname" . }}
+  jobLabel: {{ .Values.serviceMonitor.jobLabel | default (include "hcloud-exporter.fullname" .) }}
   namespaceSelector:
     matchNames:
     - {{ .Release.Namespace }}
   selector:
     matchLabels:
-      {{ include "hcloud-exporter.labels" . | nindent 6 }}
+{{ include "hcloud-exporter.labels" . | indent 6 }}
 {{- if .Values.serviceMonitor.targetLabels }}
   targetLabels:
 {{- range .Values.serviceMonitor.targetLabels }}
     - {{ . }}
-{{- end }}
 {{- end }}
 {{- end }}
 {{- end }}
