@@ -7,7 +7,7 @@ metadata:
   namespace: {{ . }}
 {{- end }}
   labels:
-    {{ include "github-exporter.labels" . | nindent 4 }}
+{{ include "github-exporter.labels" . | indent 4 }}
 {{- with .Values.prometheusRule.additionalLabels }}
     {{ toYaml . | nindent 4 }}
 {{- end }}
