@@ -23,9 +23,9 @@ A Helm chart for dockerhub-exporter
 | affinity | object | `{}` | Affinity for the deployment |
 | annotations | object | `{}` | Define additional annotations |
 | config.existingSecret | string | `nil` | Existing secret to use for credentials |
-| config.password | string | `nil` | Password for DockerHub access |
+| config.password | string | `""` | Password for DockerHub access |
 | config.passwordKey | string | `"password"` | Key used within secret for password |
-| config.username | string | `nil` | Username for DockerHub access |
+| config.username | string | `""` | Username for DockerHub access |
 | config.usernameKey | string | `"username"` | Key used within secret for username |
 | envFromConfigMap | string | `""` | Environment variables from existing configmap |
 | envFromSecret | string | `""` | environment variables from existing secret |
