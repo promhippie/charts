@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "prometheus-hetzner-sd.fullname" . }}-test-connection"
+  labels:
+{{ include "prometheus-hetzner-sd.labels" . | indent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  restartPolicy: Never
+  containers:
+    - name: wget
+      image: busybox
+      command:
+        - wget
+      args:
+        - --spider
+        - http://{{ include "prometheus-hetzner-sd.fullname" . }}:{{ .Values.service.port }}/healthz
