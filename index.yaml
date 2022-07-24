@@ -3,6 +3,28 @@ entries:
   dockerhub-exporter:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2022-07-24T16:59:14.838778097Z"
+    description: A Helm chart for dockerhub-exporter
+    digest: 611ec5cac6c58f0a508c09383d0ee133fbce7f0cd2bafd151377b12864b9d518
+    home: https://promhippie.github.io/dockerhub_exporter/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/docker.svg
+    keywords:
+    - docker
+    - dockerhub
+    - prometheus
+    - exporter
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: dockerhub-exporter
+    sources:
+    - https://github.com/promhippie/dockerhub_exporter
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/dockerhub-exporter-1.0.1/dockerhub-exporter-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2022-07-24T16:39:03.437868088Z"
     description: A Helm chart for dockerhub-exporter
     digest: 94f2a76f9cec26333c945816b28df09e3c338e4235e24710148966e19d51e6f9
@@ -24,6 +46,27 @@ entries:
     - https://github.com/promhippie/charts/releases/download/dockerhub-exporter-1.0.0/dockerhub-exporter-1.0.0.tgz
     version: 1.0.0
   github-exporter:
+  - apiVersion: v2
+    appVersion: 1.1.1
+    created: "2022-07-24T16:59:14.995492512Z"
+    description: A Helm chart for github-exporter
+    digest: 86a1f2494670c2aa45e80e07ba1ca99e25cbd2f4e207b63fe31ecb2f54305362
+    home: https://promhippie.github.io/github_exporter/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/github.svg
+    keywords:
+    - github
+    - prometheus
+    - exporter
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: github-exporter
+    sources:
+    - https://github.com/promhippie/github_exporter
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/github-exporter-2.0.1/github-exporter-2.0.1.tgz
+    version: 2.0.1
   - apiVersion: v2
     appVersion: 1.1.1
     created: "2022-07-24T16:39:03.575317097Z"
@@ -130,6 +173,28 @@ entries:
     - https://github.com/promhippie/charts/releases/download/github-exporter-1.0.0/github-exporter-1.0.0.tgz
     version: 1.0.0
   hcloud-exporter:
+  - apiVersion: v2
+    appVersion: 1.2.2
+    created: "2022-07-24T16:59:15.164761087Z"
+    description: A Helm chart for hcloud-exporter
+    digest: 9d76524a73cb2d867f12b47eb7d87dc3c4858af1de8a90b8ba135a65203367a6
+    home: https://promhippie.github.io/hcloud_exporter/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hetzner.svg
+    keywords:
+    - hetzner
+    - hcloud
+    - prometheus
+    - exporter
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: hcloud-exporter
+    sources:
+    - https://github.com/promhippie/hcloud_exporter
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/hcloud-exporter-2.0.1/hcloud-exporter-2.0.1.tgz
+    version: 2.0.1
   - apiVersion: v2
     appVersion: 1.2.2
     created: "2022-07-24T16:39:03.717401492Z"
@@ -265,6 +330,27 @@ entries:
   jenkins-exporter:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2022-07-24T16:59:15.332549668Z"
+    description: A Helm chart for jenkins-exporter
+    digest: 31556e39dc44c24b30f1461ad4e88b36969a37ac269d8b9cafcad1e423206a35
+    home: https://promhippie.github.io/jenkins_exporter/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/jenkins.svg
+    keywords:
+    - jenkins
+    - prometheus
+    - exporter
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: jenkins-exporter
+    sources:
+    - https://github.com/promhippie/jenkins_exporter
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/jenkins-exporter-1.0.1/jenkins-exporter-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2022-07-24T16:39:03.874544061Z"
     description: A Helm chart for jenkins-exporter
     digest: 7fa3c7e7aa8798929741defd2b3e6ec3ca726ad7cc84b5d1d0c428899dcd88cf
@@ -384,6 +470,28 @@ entries:
   scw-exporter:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2022-07-24T16:59:16.132104391Z"
+    description: A Helm chart for scw-exporter
+    digest: 85ce7b0f8eac14c3fc113cd6c375ba7c824aaa040f5f2d84036dcd905dfcf8d1
+    home: https://promhippie.github.io/scw_exporter/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/scaleway.svg
+    keywords:
+    - scw
+    - scaleway
+    - prometheus
+    - exporter
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: scw-exporter
+    sources:
+    - https://github.com/promhippie/scw_exporter
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/scw-exporter-1.0.1/scw-exporter-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2022-07-24T16:39:04.502556128Z"
     description: A Helm chart for scw-exporter
     digest: 829b78cb61a74609512f5c18190366d2a5fe4c638639aa8a5fc3ce7477785004
@@ -404,4 +512,4 @@ entries:
     urls:
     - https://github.com/promhippie/charts/releases/download/scw-exporter-1.0.0/scw-exporter-1.0.0.tgz
     version: 1.0.0
-generated: "2022-07-24T16:39:04.502722131Z"
+generated: "2022-07-24T16:59:16.13232029Z"
