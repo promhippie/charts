@@ -1,6 +1,50 @@
 apiVersion: v1
 entries:
+  dockerhub-exporter:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-07-24T16:39:03.437868088Z"
+    description: A Helm chart for dockerhub-exporter
+    digest: 94f2a76f9cec26333c945816b28df09e3c338e4235e24710148966e19d51e6f9
+    home: https://promhippie.github.io/dockerhub_exporter/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/docker.svg
+    keywords:
+    - docker
+    - dockerhub
+    - prometheus
+    - exporter
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: dockerhub-exporter
+    sources:
+    - https://github.com/promhippie/dockerhub_exporter
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/dockerhub-exporter-1.0.0/dockerhub-exporter-1.0.0.tgz
+    version: 1.0.0
   github-exporter:
+  - apiVersion: v2
+    appVersion: 1.1.1
+    created: "2022-07-24T16:39:03.575317097Z"
+    description: A Helm chart for github-exporter
+    digest: a90899441f1a108e0a6d3c4f7d7c2fe77632fc29adb698051d6276f5464d7ac0
+    home: https://promhippie.github.io/github_exporter/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/github.svg
+    keywords:
+    - github
+    - prometheus
+    - exporter
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: github-exporter
+    sources:
+    - https://github.com/promhippie/github_exporter
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/github-exporter-2.0.0/github-exporter-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v2
     appVersion: 1.1.1
     created: "2022-05-11T13:27:21.10102113Z"
@@ -86,6 +130,28 @@ entries:
     - https://github.com/promhippie/charts/releases/download/github-exporter-1.0.0/github-exporter-1.0.0.tgz
     version: 1.0.0
   hcloud-exporter:
+  - apiVersion: v2
+    appVersion: 1.2.2
+    created: "2022-07-24T16:39:03.717401492Z"
+    description: A Helm chart for hcloud-exporter
+    digest: 20645cb227e141ac53d1c4943fb4aa5a74192d39a16e0ddcaa23e7235e99879b
+    home: https://promhippie.github.io/hcloud_exporter/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hetzner.svg
+    keywords:
+    - hetzner
+    - hcloud
+    - prometheus
+    - exporter
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: hcloud-exporter
+    sources:
+    - https://github.com/promhippie/hcloud_exporter
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/hcloud-exporter-2.0.0/hcloud-exporter-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v2
     appVersion: 1.2.2
     created: "2022-05-14T10:03:11.653730529Z"
@@ -196,4 +262,146 @@ entries:
     urls:
     - https://github.com/promhippie/charts/releases/download/hcloud-exporter-1.0.0/hcloud-exporter-1.0.0.tgz
     version: 1.0.0
-generated: "2022-05-14T10:03:11.653749529Z"
+  jenkins-exporter:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-07-24T16:39:03.874544061Z"
+    description: A Helm chart for jenkins-exporter
+    digest: 7fa3c7e7aa8798929741defd2b3e6ec3ca726ad7cc84b5d1d0c428899dcd88cf
+    home: https://promhippie.github.io/jenkins_exporter/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/jenkins.svg
+    keywords:
+    - jenkins
+    - prometheus
+    - exporter
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: jenkins-exporter
+    sources:
+    - https://github.com/promhippie/jenkins_exporter
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/jenkins-exporter-1.0.0/jenkins-exporter-1.0.0.tgz
+    version: 1.0.0
+  prometheus-hcloud-sd:
+  - apiVersion: v2
+    appVersion: 0.5.0
+    created: "2022-07-24T16:39:04.02014822Z"
+    description: A Helm chart for Prometheus Hetzner Cloud SD
+    digest: ad9cd950e7d088f0f402c381358e4ebc4968e98c7bd468f204ba00270590255d
+    home: https://promhippie.github.io/prometheus-hcloud-sd/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hetzner.svg
+    keywords:
+    - hetzner
+    - cloud
+    - hcloud
+    - prometheus
+    - sd
+    - service-discovery
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: prometheus-hcloud-sd
+    sources:
+    - https://github.com/promhippie/prometheus-hcloud-sd
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/prometheus-hcloud-sd-1.0.0/prometheus-hcloud-sd-1.0.0.tgz
+    version: 1.0.0
+  prometheus-hetzner-sd:
+  - apiVersion: v2
+    appVersion: 0.5.0
+    created: "2022-07-24T16:39:04.142014345Z"
+    description: A Helm chart for Prometheus Hetzner SD
+    digest: 2a516a9e4a9ef5c459a30a7b1dcbe9c8a6d4a0cedd2d6d88fb1d09aa0a7f1876
+    home: https://promhippie.github.io/prometheus-hetzner-sd/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hetzner.svg
+    keywords:
+    - hetzner
+    - prometheus
+    - sd
+    - service-discovery
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: prometheus-hetzner-sd
+    sources:
+    - https://github.com/promhippie/prometheus-hetzner-sd
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/prometheus-hetzner-sd-1.0.0/prometheus-hetzner-sd-1.0.0.tgz
+    version: 1.0.0
+  prometheus-scw-sd:
+  - apiVersion: v2
+    appVersion: 1.1.0
+    created: "2022-07-24T16:39:04.270120584Z"
+    description: A Helm chart for Prometheus Scaleway SD
+    digest: 31078d2c504135e1efd895895b486f3374b799988fe9306c327f529a5c521ec3
+    home: https://promhippie.github.io/prometheus-scw-sd/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/scaleway.svg
+    keywords:
+    - scw
+    - scaleway
+    - prometheus
+    - sd
+    - service-discovery
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: prometheus-scw-sd
+    sources:
+    - https://github.com/promhippie/prometheus-scw-sd
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/prometheus-scw-sd-1.0.0/prometheus-scw-sd-1.0.0.tgz
+    version: 1.0.0
+  prometheus-vcd-sd:
+  - apiVersion: v2
+    appVersion: 0.3.0
+    created: "2022-07-24T16:39:04.384676375Z"
+    description: A Helm chart for Prometheus VMWare vCloud Director SD
+    digest: 568f86a778f911f8aae13d955b73b8e5f2e95bbd6f3e4b59bfb1e7c33bfd3c2d
+    home: https://promhippie.github.io/prometheus-vcd-sd/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/vmware.svg
+    keywords:
+    - vmware
+    - vcloud
+    - director
+    - prometheus
+    - sd
+    - service-discovery
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: prometheus-vcd-sd
+    sources:
+    - https://github.com/promhippie/prometheus-vcd-sd
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/prometheus-vcd-sd-1.0.0/prometheus-vcd-sd-1.0.0.tgz
+    version: 1.0.0
+  scw-exporter:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-07-24T16:39:04.502556128Z"
+    description: A Helm chart for scw-exporter
+    digest: 829b78cb61a74609512f5c18190366d2a5fe4c638639aa8a5fc3ce7477785004
+    home: https://promhippie.github.io/scw_exporter/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/scaleway.svg
+    keywords:
+    - scw
+    - scaleway
+    - prometheus
+    - exporter
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: scw-exporter
+    sources:
+    - https://github.com/promhippie/scw_exporter
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/scw-exporter-1.0.0/scw-exporter-1.0.0.tgz
+    version: 1.0.0
+generated: "2022-07-24T16:39:04.502722131Z"
