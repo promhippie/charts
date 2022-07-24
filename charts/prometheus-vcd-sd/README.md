@@ -22,11 +22,12 @@ A Helm chart for Prometheus VMWare vCloud Director SD
 |-----|------|---------|-------------|
 | affinity | object | `{}` | Affinity for the deployment |
 | annotations | object | `{}` | Define additional annotations |
-| config | string | `nil` |  |
+| credentials | list | `[]` | List of credentials to use for the service discovery |
 | envFromConfigMap | string | `""` | Environment variables from existing configmap |
 | envFromSecret | string | `""` | environment variables from existing secret |
 | extraEnvSecrets | object | `{}` | Extra environment variables from secrets |
 | extraEnvVariables | object | `{}` | Extra environment variables from mapping |
+| files | object | `{}` | List of files written to a configmap and mounted to /etc/prometheus-vcd-files |
 | fullnameOverride | string | `""` | Override the fullname |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
 | image.pullSecrets | list | `[]` | Optional name of pull secret if using a private registry |
@@ -41,6 +42,8 @@ A Helm chart for Prometheus VMWare vCloud Director SD
 | prometheusRule.rules | list | `[]` | Rules definition |
 | replicaCount | int | `1` | Replicas for the deployment |
 | resources | object | `{}` | Resources for the deployment |
+| sd.engine | string | `"http"` | Service discovery engine, should be `http` in most cases |
+| sd.output | string | `"/etc/prometheus-vcd-sd/vcd.json"` | Path to write the service discovery result to |
 | securityContext | object | `{"allowPrivilegeEscalation":false,"capabilities":{"drop":["all"]},"readOnlyRootFilesystem":true,"runAsGroup":10000,"runAsNonRoot":true,"runAsUser":10000}` | Security context for the deployment |
 | service.annotations | object | `{}` | Additional annotations for the service |
 | service.internalPort | int | `9000` | Internal port of the service |
