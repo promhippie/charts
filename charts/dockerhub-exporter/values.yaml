@@ -137,6 +137,9 @@ envFromConfigMap: ""
 
 # -- Extra environment variables from mapping
 extraEnvVariables: {}
+  # DOCKERHUB_EXPORTER_ORG: promhippie
+  # DOCKERHUB_EXPORTER_USER: tboerger
+  # DOCKERHUB_EXPORTER_REPO: webhippie/*
 
 # -- Extra environment variables from secrets
 extraEnvSecrets: {}

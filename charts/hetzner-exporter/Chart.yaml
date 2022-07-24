@@ -7,7 +7,7 @@ type: application
 
 # renovate: datasource=docker depName=quay.io/promhippie/dockerhub-exporter
 appVersion: 1.0.0
-version: 1.0.0
+version: 1.0.1
 
 home: https://promhippie.github.io/dockerhub_exporter/
 icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/docker.svg

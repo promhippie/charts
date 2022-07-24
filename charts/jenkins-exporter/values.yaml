@@ -137,6 +137,7 @@ envFromConfigMap: ""
 
 # -- Extra environment variables from mapping
 extraEnvVariables: {}
+  # JENKINS_EXPORTER_COLLECTOR_JOBS: true
 
 # -- Extra environment variables from secrets
 extraEnvSecrets: {}

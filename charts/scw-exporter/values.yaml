@@ -137,6 +137,7 @@ envFromConfigMap: ""
 
 # -- Extra environment variables from mapping
 extraEnvVariables: {}
+  # SCW_EXPORTER_COLLECTOR_SERVERS: true
 
 # -- Extra environment variables from secrets
 extraEnvSecrets: {}

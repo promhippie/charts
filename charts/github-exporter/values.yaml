@@ -137,6 +137,8 @@ envFromConfigMap: ""
 
 # -- Extra environment variables from mapping
 extraEnvVariables: {}
+  # GITHUB_EXPORTER_ORGS: promhippie
+  # GITHUB_EXPORTER_REPOS: promhippie/*
 
 # -- Extra environment variables from secrets
 extraEnvSecrets: {}
