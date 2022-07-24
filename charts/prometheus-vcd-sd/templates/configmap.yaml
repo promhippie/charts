@@ -1,0 +1,13 @@
+{{- if .Values.files -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "prometheus-vcd-sd.fullname" . }}-files
+  labels:
+    {{- include "prometheus-vcd-sd.labels" . | nindent 4 }}
+data:
+  {{- range $key, $value := .Values.files }}
+  {{ $key }}: |
+    {{- $value | nindent 4 }}
+  {{- end }}
+{{- end -}}
