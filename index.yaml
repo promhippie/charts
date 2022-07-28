@@ -3,6 +3,28 @@ entries:
   dockerhub-exporter:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2022-07-28T22:43:26.638861908Z"
+    description: A Helm chart for dockerhub-exporter
+    digest: c6507df444bbc2ba4d171fbe14fd82f3808f35add386690d706ecf2c0d6240ef
+    home: https://promhippie.github.io/dockerhub_exporter/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/docker.svg
+    keywords:
+    - docker
+    - dockerhub
+    - prometheus
+    - exporter
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: dockerhub-exporter
+    sources:
+    - https://github.com/promhippie/dockerhub_exporter
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/dockerhub-exporter-1.0.2/dockerhub-exporter-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2022-07-24T16:59:14.838778097Z"
     description: A Helm chart for dockerhub-exporter
     digest: 611ec5cac6c58f0a508c09383d0ee133fbce7f0cd2bafd151377b12864b9d518
@@ -535,4 +557,4 @@ entries:
     urls:
     - https://github.com/promhippie/charts/releases/download/scw-exporter-1.0.0/scw-exporter-1.0.0.tgz
     version: 1.0.0
-generated: "2022-07-24T17:04:00.406507316Z"
+generated: "2022-07-28T22:43:26.757970218Z"
