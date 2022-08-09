@@ -417,6 +417,30 @@ entries:
     version: 1.0.0
   prometheus-hcloud-sd:
   - apiVersion: v2
+    appVersion: 0.6.0
+    created: "2022-08-09T23:49:32.960320538Z"
+    description: A Helm chart for Prometheus Hetzner Cloud SD
+    digest: 65e8baed46f52fd202dd4d2ce45a9f435cbc6886900a6f6664eed17e12331e10
+    home: https://promhippie.github.io/prometheus-hcloud-sd/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hetzner.svg
+    keywords:
+    - hetzner
+    - cloud
+    - hcloud
+    - prometheus
+    - sd
+    - service-discovery
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: prometheus-hcloud-sd
+    sources:
+    - https://github.com/promhippie/prometheus-hcloud-sd
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/prometheus-hcloud-sd-1.1.0/prometheus-hcloud-sd-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v2
     appVersion: 0.5.0
     created: "2022-07-24T16:39:04.02014822Z"
     description: A Helm chart for Prometheus Hetzner Cloud SD
@@ -442,6 +466,28 @@ entries:
     version: 1.0.0
   prometheus-hetzner-sd:
   - apiVersion: v2
+    appVersion: 0.6.0
+    created: "2022-08-09T23:49:33.10378127Z"
+    description: A Helm chart for Prometheus Hetzner SD
+    digest: e4000d61775f02c3b0732958bef3c7aac46f5193a9a8dc73eef4d65e714027b2
+    home: https://promhippie.github.io/prometheus-hetzner-sd/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hetzner.svg
+    keywords:
+    - hetzner
+    - prometheus
+    - sd
+    - service-discovery
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: prometheus-hetzner-sd
+    sources:
+    - https://github.com/promhippie/prometheus-hetzner-sd
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/prometheus-hetzner-sd-1.1.0/prometheus-hetzner-sd-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v2
     appVersion: 0.5.0
     created: "2022-07-24T16:39:04.142014345Z"
     description: A Helm chart for Prometheus Hetzner SD
@@ -464,6 +510,29 @@ entries:
     - https://github.com/promhippie/charts/releases/download/prometheus-hetzner-sd-1.0.0/prometheus-hetzner-sd-1.0.0.tgz
     version: 1.0.0
   prometheus-scw-sd:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2022-08-09T23:49:33.226874636Z"
+    description: A Helm chart for Prometheus Scaleway SD
+    digest: 319d0c1a6604c3d15a4847d98137fed3d2cce3965471bd49709710de29a13a6e
+    home: https://promhippie.github.io/prometheus-scw-sd/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/scaleway.svg
+    keywords:
+    - scw
+    - scaleway
+    - prometheus
+    - sd
+    - service-discovery
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: prometheus-scw-sd
+    sources:
+    - https://github.com/promhippie/prometheus-scw-sd
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/prometheus-scw-sd-1.1.0/prometheus-scw-sd-1.1.0.tgz
+    version: 1.1.0
   - apiVersion: v2
     appVersion: 1.1.0
     created: "2022-07-24T16:39:04.270120584Z"
@@ -488,6 +557,30 @@ entries:
     - https://github.com/promhippie/charts/releases/download/prometheus-scw-sd-1.0.0/prometheus-scw-sd-1.0.0.tgz
     version: 1.0.0
   prometheus-vcd-sd:
+  - apiVersion: v2
+    appVersion: 0.4.0
+    created: "2022-08-09T23:49:33.572554391Z"
+    description: A Helm chart for Prometheus VMWare vCloud Director SD
+    digest: fc707a93b08a0f733c2bda28bf16cdf87a80bd948b7a7e167f42ae19f36a54e7
+    home: https://promhippie.github.io/prometheus-vcd-sd/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/vmware.svg
+    keywords:
+    - vmware
+    - vcloud
+    - director
+    - prometheus
+    - sd
+    - service-discovery
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: prometheus-vcd-sd
+    sources:
+    - https://github.com/promhippie/prometheus-vcd-sd
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/prometheus-vcd-sd-1.1.0/prometheus-vcd-sd-1.1.0.tgz
+    version: 1.1.0
   - apiVersion: v2
     appVersion: 0.3.0
     created: "2022-07-24T16:39:04.384676375Z"
@@ -557,4 +650,4 @@ entries:
     urls:
     - https://github.com/promhippie/charts/releases/download/scw-exporter-1.0.0/scw-exporter-1.0.0.tgz
     version: 1.0.0
-generated: "2022-07-28T22:43:26.757970218Z"
+generated: "2022-08-09T23:49:33.572601595Z"
