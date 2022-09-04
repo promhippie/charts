@@ -351,6 +351,28 @@ entries:
     version: 1.0.0
   hetzner-exporter:
   - apiVersion: v2
+    appVersion: 1.1.0
+    created: "2022-09-04T18:15:41.827944427Z"
+    description: A Helm chart for hetzner-exporter
+    digest: 4e01a964cba67f46baec88a08b138113f1efac9b42f50c908dac767ccc036a4c
+    home: https://promhippie.github.io/hetzner_exporter/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hetzner.svg
+    keywords:
+    - docker
+    - hetzner
+    - prometheus
+    - exporter
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+    name: hetzner-exporter
+    sources:
+    - https://github.com/promhippie/hetzner_exporter
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/hetzner-exporter-1.1.0/hetzner-exporter-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v2
     appVersion: 1.0.0
     created: "2022-07-24T17:04:00.137945974Z"
     description: A Helm chart for hetzner-exporter
@@ -650,4 +672,4 @@ entries:
     urls:
     - https://github.com/promhippie/charts/releases/download/scw-exporter-1.0.0/scw-exporter-1.0.0.tgz
     version: 1.0.0
-generated: "2022-08-09T23:49:33.572601595Z"
+generated: "2022-09-04T18:15:42.322062006Z"
