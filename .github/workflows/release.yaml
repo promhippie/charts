@@ -21,6 +21,7 @@ jobs:
         id: gnupg
         run: |
           echo "${{ secrets.GNUPG_KEY }}" | gpg --batch --import
+          gpg --export >| ~/.gnupg/pubring.gpg
 
       - name: Configure git
         id: git
@@ -33,6 +34,5 @@ jobs:
         uses: helm/chart-releaser-action@v1.4.0
         env:
           CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CR_KEYRING: /home/runner/.gnupg/pubring.kbx
 
 ...
