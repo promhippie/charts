@@ -28,7 +28,7 @@ jobs:
         id: export
         run: |
           gpg --export ${KEYID} >| ~/.gnupg/pubring.gpg
-          gpg --export-secret-keys ${KEYID} >| ~/.gnupg/secring.gpg
+          gpg --list-secret-keys
         env:
           KEYID: ${{ steps.gnupg.outputs.keyid }}
 
