@@ -27,10 +27,11 @@ jobs:
       - name: Export gnupg
         id: export
         run: |
-          gpg --export ${KEYID} >| ~/.gnupg/pubring.gpg
+          gpg --always-trust --yes -s $(mktemp)
           gpg --list-secret-keys
-        env:
-          KEYID: ${{ steps.gnupg.outputs.keyid }}
+
+          gpg --export >| ~/.gnupg/pubring.gpg
+          gpg --export-secret-keys >| ~/.gnupg/secring.gpg
 
       - name: Configure git
         id: git
