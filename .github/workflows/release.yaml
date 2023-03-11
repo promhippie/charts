@@ -17,6 +17,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Import gnupg
+        id: gnupg
+        run: |
+          echo ${{ secrets.GNUPG_KEY }} | gpg --import
+
       - name: Configure git
         id: git
         run: |
@@ -25,7 +30,7 @@ jobs:
 
       - name: Run releaser
         id: releaser
-        uses: helm/chart-releaser-action@v1.5.0
+        uses: helm/chart-releaser-action@v1.4.0
         env:
           CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

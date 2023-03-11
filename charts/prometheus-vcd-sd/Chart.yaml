@@ -7,7 +7,7 @@ type: application
 
 # renovate: datasource=docker depName=quay.io/promhippie/prometheus-vcd-sd
 appVersion: 0.4.0
-version: 1.1.0
+version: 1.1.1
 
 home: https://promhippie.github.io/prometheus-vcd-sd/
 icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/vmware.svg
@@ -26,5 +26,12 @@ sources:
 maintainers:
   - name: tboerger
     email: thomas@webhippie.de
+    url: https://github.com/tboerger
+
+annotations:
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/signKey: |
+    fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
+    url: https://dl.webhippie.de/promhippie.key
 
 ...
