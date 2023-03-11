@@ -24,6 +24,14 @@ jobs:
           gpg_private_key: ${{ secrets.GNUPG_KEY }}
           passphrase: ${{ secrets.GNUPG_PASSWORD }}
 
+      - name: Export gnupg
+        id: export
+        run: |
+          gpg --export ${KEYID} >| ~/.gnupg/pubring.gpg
+          gpg --export-secret-keys ${KEYID} >| ~/.gnupg/secring.gpg
+        env:
+          KEYID: ${{ steps.gnupg.outputs.keyid }}
+
       - name: Configure git
         id: git
         run: |
