@@ -20,7 +20,7 @@ jobs:
       - name: Import gnupg
         id: gnupg
         run: |
-          echo "${{ secrets.GNUPG_KEY }}" | gpg --import
+          echo "${{ secrets.GNUPG_KEY }}" | gpg --batch --import
 
       - name: Configure git
         id: git
