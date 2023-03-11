@@ -22,6 +22,7 @@ jobs:
         run: |
           echo "${{ secrets.GNUPG_KEY }}" | gpg --batch --import
           gpg --export >| ~/.gnupg/pubring.gpg
+          gpg --export-secret-keys >| ~/.gnupg/secring.gpg
 
       - name: Configure git
         id: git
