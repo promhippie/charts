@@ -21,7 +21,7 @@ jobs:
         id: gnupg
         uses: cresh-io/action-gpg@v1
         with:
-            gpg-sign-key: ${{ secrets.GNUPG_KEY }}
+            gpg-sign-key: ${{ secrets.GNUPG_ENCODED }}
             gpg-passphrase: ${{ secrets.GNUPG_PASSWORD }}
             git-email: ${{ github.actor }}@users.noreply.github.com
             git-username: ${{ github.actor }}
@@ -29,6 +29,7 @@ jobs:
       - name: Print gnupg
         id: print
         run: |
+          ls ~/.gnupg
           gpg -K
 
       - name: Write secring
