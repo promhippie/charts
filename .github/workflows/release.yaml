@@ -17,16 +17,30 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Import gnupg
+        id: gnupg
+        uses: cresh-io/action-gpg@v1
+        with:
+            gpg-sign-key: ${{ secrets.GNUPG_KEY }}
+            gpg-passphrase: ${{ secrets.GNUPG_PASSWORD }}
+            git-email: ${{ github.actor }}@users.noreply.github.com
+            git-username: ${{ github.actor }}
+
+      - name: Print gnupg
+        id: print
+        run: |
+          gpg -K
+
       - name: Write secring
         id: secring
         run: |
           echo -n "${{ secrets.GNUPG_SECRING }}" | base64 -d >| secring.gpg
 
-      - name: Configure git
-        id: git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      # - name: Configure git
+      #   id: git
+      #   run: |
+      #     git config user.name "$GITHUB_ACTOR"
+      #     git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
       - name: Run releaser
         id: releaser
