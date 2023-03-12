@@ -26,22 +26,10 @@ jobs:
             git-email: promhippie@webhippie.de
             git-username: Promhippie
 
-      - name: Print gnupg
-        id: print
-        run: |
-          ls ~/.gnupg
-          gpg -K
-
       - name: Write secring
         id: secring
         run: |
-          echo -n "${{ secrets.GNUPG_SECRING }}" | base64 -d >| secring.gpg
-
-      # - name: Configure git
-      #   id: git
-      #   run: |
-      #     git config user.name "$GITHUB_ACTOR"
-      #     git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          gpg --output secring.gpg --export-secret-keys
 
       - name: Run releaser
         id: releaser
