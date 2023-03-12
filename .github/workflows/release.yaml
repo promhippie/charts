@@ -20,7 +20,7 @@ jobs:
       - name: Write secring
         id: secring
         run: |
-          base64 --decode <<< "${{ secrets.GNUPG_SECRING }}" >| /home/runner/secring.gpg
+          echo -n "${{ secrets.GNUPG_SECRING }}" | base64 -d >| secring.gpg
 
       - name: Configure git
         id: git
@@ -33,6 +33,6 @@ jobs:
         uses: helm/chart-releaser-action@v1.4.0
         env:
           CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CR_KEYRING: /home/runner/secring.gpg
+          CR_KEYRING: secring.gpg
 
 ...
