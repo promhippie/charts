@@ -23,8 +23,8 @@ jobs:
         with:
             gpg-sign-key: ${{ secrets.GNUPG_ENCODED }}
             gpg-passphrase: ${{ secrets.GNUPG_PASSWORD }}
-            git-email: ${{ github.actor }}@users.noreply.github.com
-            git-username: ${{ github.actor }}
+            git-email: promhippie@webhippie.de
+            git-username: Promhippie
 
       - name: Print gnupg
         id: print
