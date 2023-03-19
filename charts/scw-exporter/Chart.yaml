@@ -7,7 +7,7 @@ type: application
 
 # renovate: datasource=docker depName=quay.io/promhippie/scw-exporter
 appVersion: 1.0.0
-version: 1.0.2
+version: 2.0.0
 
 home: https://promhippie.github.io/scw_exporter/
 icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/scaleway.svg
