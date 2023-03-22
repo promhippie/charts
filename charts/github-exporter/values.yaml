@@ -144,11 +144,32 @@ extraEnvVariables: {}
 extraEnvSecrets: {}
 
 config:
+  # -- Authentication mode, could be `token` or `app`
+  authType: token
+
   # -- Access token for GitHub
   token: ""
 
   # -- Key used within secret for token
   tokenKey: token
+
+  # -- App ID used for GitHub app
+  appId: ""
+
+  # -- Key used within secret for appId
+  appIdKey: appId
+
+  # -- Installation ID used for GitHub app
+  installationId: ""
+
+  # -- Key used within secret for installationId
+  installationIdKey: installationId
+
+  # -- Private key in base64 encoded format
+  privateKey: ""
+
+  # -- Key used within secret for privateKey
+  privateKeyKey: privateKey
 
   # -- Existing secret to use for credentials
   existingSecret:
