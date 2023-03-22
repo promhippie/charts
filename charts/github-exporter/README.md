@@ -22,7 +22,14 @@ A Helm chart for github-exporter
 |-----|------|---------|-------------|
 | affinity | object | `{}` | Affinity for the deployment |
 | annotations | object | `{}` | Define additional annotations |
+| config.appId | string | `""` | App ID used for GitHub app |
+| config.appIdKey | string | `"appId"` | Key used within secret for appId |
+| config.authType | string | `"token"` | Authentication mode, could be `token` or `app` |
 | config.existingSecret | string | `nil` | Existing secret to use for credentials |
+| config.installationId | string | `""` | Installation ID used for GitHub app |
+| config.installationIdKey | string | `"installationId"` | Key used within secret for installationId |
+| config.privateKey | string | `""` | Private key in base64 encoded format |
+| config.privateKeyKey | string | `"privateKey"` | Key used within secret for privateKey |
 | config.token | string | `""` | Access token for GitHub |
 | config.tokenKey | string | `"token"` | Key used within secret for token |
 | envFromConfigMap | string | `""` | Environment variables from existing configmap |

@@ -39,11 +39,30 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           env:
+            {{- if eq .Values.config.authType "token" }}
             - name: GITHUB_EXPORTER_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.config.existingSecret | default (include "github-exporter.fullname" .) }}
                   key: {{ .Values.config.tokenKey }}
+            {{- end }}
+            {{- if eq .Values.config.authType "app" }}
+            - name: GITHUB_EXPORTER_APP_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.config.existingSecret | default (include "github-exporter.fullname" .) }}
+                  key: {{ .Values.config.appIdKey }}
+            - name: GITHUB_EXPORTER_INSTALLATION_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.config.existingSecret | default (include "github-exporter.fullname" .) }}
+                  key: {{ .Values.config.installationIdKey }}
+            - name: GITHUB_EXPORTER_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.config.existingSecret | default (include "github-exporter.fullname" .) }}
+                  key: {{ .Values.config.privateKeyKey }}
+            {{- end }}
             {{- range $key, $value := .Values.extraEnvSecrets }}
             - name: {{ $key }}
               valueFrom:
