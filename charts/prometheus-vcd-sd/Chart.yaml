@@ -7,7 +7,7 @@ type: application
 
 # renovate: datasource=docker depName=quay.io/promhippie/prometheus-vcd-sd
 appVersion: 0.4.1
-version: 1.1.1
+version: 1.1.2
 
 home: https://promhippie.github.io/prometheus-vcd-sd/
 icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/vmware.svg
