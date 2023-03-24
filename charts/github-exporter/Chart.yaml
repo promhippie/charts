@@ -6,7 +6,7 @@ description: A Helm chart for github-exporter
 type: application
 
 # renovate: datasource=docker depName=quay.io/promhippie/github-exporter
-appVersion: 2.0.1
+appVersion: 2.1.0
 version: 3.0.1
 
 home: https://promhippie.github.io/github_exporter/
