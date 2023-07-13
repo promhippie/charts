@@ -19,7 +19,7 @@ jobs:
 
       - name: Import gnupg
         id: gnupg
-        uses: cresh-io/action-gpg@v1
+        uses: cresh-io/action-gpg@v2
         with:
             gpg-sign-key: ${{ secrets.GNUPG_ENCODED }}
             gpg-passphrase: ${{ secrets.GNUPG_PASSWORD }}
