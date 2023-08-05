@@ -8,7 +8,7 @@ name: testing
 
 jobs:
   testing:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout source
@@ -20,14 +20,12 @@ jobs:
       - name: Setup helm
         id: helm
         uses: azure/setup-helm@v3
-        with:
-          version: v3.7.1
 
       - name: Setup python
         id: python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.7
+          python-version-file: .python-version
 
       - name: Setup testing
         id: setup
