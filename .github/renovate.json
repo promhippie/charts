@@ -1,8 +1,7 @@
 {
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
-        "config:base",
-        ":semanticCommits",
-        ":semanticCommitType(deps)"
+        "github>promhippie/.github//renovate/preset"
     ],
     "regexManagers": [
         {
@@ -13,40 +12,5 @@
                 "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>.*?))?\nappVersion: (?<currentValue>.*)"
             ]
         }
-    ],
-    "packageRules": [
-        {
-            "description": "Semantic commits for major versions",
-            "groupName": "major versions",
-            "matchUpdateTypes": [
-                "major"
-            ],
-            "semanticCommitType": "deps",
-            "semanticCommitScope": "major",
-            "automerge": false
-        },
-        {
-            "description": "Semantic commits for minor versions",
-            "groupName": "minor versions",
-            "matchUpdateTypes": [
-                "minor"
-            ],
-            "semanticCommitType": "deps",
-            "semanticCommitScope": "minor",
-            "automerge": false
-        },
-        {
-            "description": "Semantic commits for patch versions",
-            "groupName": "patch versions",
-            "matchUpdateTypes": [
-                "patch"
-            ],
-            "semanticCommitType": "deps",
-            "semanticCommitScope": "patch",
-            "automerge": false
-        }
-    ],
-    "labels": [
-        "renovate"
     ]
 }
