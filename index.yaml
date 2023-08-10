@@ -466,6 +466,34 @@ entries:
         fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
         url: https://dl.webhippie.de/promhippie.key
     apiVersion: v2
+    appVersion: 1.2.3
+    created: "2023-08-10T13:10:01.781270302Z"
+    description: A Helm chart for hcloud-exporter
+    digest: 8bb70bbebe612c7827ec9d0bd16259d35ffa11006df71fb6f20362e2889b909a
+    home: https://promhippie.github.io/hcloud_exporter/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hetzner.svg
+    keywords:
+    - hetzner
+    - hcloud
+    - prometheus
+    - exporter
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+      url: https://github.com/tboerger
+    name: hcloud-exporter
+    sources:
+    - https://github.com/promhippie/hcloud_exporter
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/hcloud-exporter-2.0.3/hcloud-exporter-2.0.3.tgz
+    version: 2.0.3
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/signKey: |
+        fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
+        url: https://dl.webhippie.de/promhippie.key
+    apiVersion: v2
     appVersion: 1.2.2
     created: "2023-03-12T12:58:06.530486679Z"
     description: A Helm chart for hcloud-exporter
@@ -1223,4 +1251,4 @@ entries:
     urls:
     - https://github.com/promhippie/charts/releases/download/scw-exporter-1.0.0/scw-exporter-1.0.0.tgz
     version: 1.0.0
-generated: "2023-07-20T08:15:47.001272604Z"
+generated: "2023-08-10T13:10:01.7816011Z"
