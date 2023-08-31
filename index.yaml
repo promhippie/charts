@@ -102,6 +102,33 @@ entries:
         fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
         url: https://dl.webhippie.de/promhippie.key
     apiVersion: v2
+    appVersion: 2.4.0
+    created: "2023-08-31T07:02:21.701801251Z"
+    description: A Helm chart for github-exporter
+    digest: 90616c9e5144e3f5678d2e8b7991213681029725303132f6c27eb2ff214144a9
+    home: https://promhippie.github.io/github_exporter/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/github.svg
+    keywords:
+    - github
+    - prometheus
+    - exporter
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+      url: https://github.com/tboerger
+    name: github-exporter
+    sources:
+    - https://github.com/promhippie/github_exporter
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/github-exporter-3.4.0/github-exporter-3.4.0.tgz
+    version: 3.4.0
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/signKey: |
+        fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
+        url: https://dl.webhippie.de/promhippie.key
+    apiVersion: v2
     appVersion: 2.3.0
     created: "2023-07-20T08:15:47.001136903Z"
     description: A Helm chart for github-exporter
@@ -1251,4 +1278,4 @@ entries:
     urls:
     - https://github.com/promhippie/charts/releases/download/scw-exporter-1.0.0/scw-exporter-1.0.0.tgz
     version: 1.0.0
-generated: "2023-08-10T13:10:01.7816011Z"
+generated: "2023-08-31T07:02:21.870788474Z"
