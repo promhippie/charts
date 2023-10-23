@@ -2,6 +2,7 @@
 name: helmdocs
 
 "on":
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -9,6 +10,7 @@ name: helmdocs
 jobs:
   helmdocs:
     runs-on: ubuntu-latest
+    if: github.repository == 'promhippie/charts'
 
     steps:
       - name: Checkout source
@@ -16,8 +18,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.BOT_ACCESS_TOKEN }}
+          fetch-depth: 0
 
       - name: Update readme
+        id: docs
         uses: docker://jnorwood/helm-docs:v1.11.3
         with:
           entrypoint: helm-docs
@@ -28,8 +32,8 @@ jobs:
         with:
           author_name: GitHub Actions
           author_email: github@webhippie.de
-          add: charts/
-          message: automated readme update [skip ci]
+          add: stable/
+          message: "docs: automated readme update [skip ci]"
           push: true
           commit: --signoff
 

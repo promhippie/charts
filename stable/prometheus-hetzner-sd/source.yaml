@@ -1,0 +1,6 @@
+---
+registry: quay.io
+image: promhippie/prometheus-hetzner-sd
+prerelease: false
+
+...

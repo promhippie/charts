@@ -1,0 +1,6 @@
+---
+registry: quay.io
+image: promhippie/github-exporter
+prerelease: false
+
+...

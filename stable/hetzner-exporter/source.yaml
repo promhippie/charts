@@ -1,0 +1,6 @@
+---
+registry: quay.io
+image: promhippie/hetzner-exporter
+prerelease: false
+
+...

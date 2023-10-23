@@ -1,0 +1,6 @@
+---
+registry: quay.io
+image: promhippie/scw-exporter
+prerelease: false
+
+...

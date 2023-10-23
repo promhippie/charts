@@ -1,0 +1,37 @@
+---
+apiVersion: v2
+
+name: prometheus-hcloud-sd
+description: A Helm chart for Prometheus Hetzner Cloud SD
+type: application
+
+# renovate: datasource=docker depName=quay.io/promhippie/prometheus-hcloud-sd
+appVersion: 0.6.0
+version: 1.1.1
+
+home: https://promhippie.github.io/prometheus-hcloud-sd/
+icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hetzner.svg
+
+keywords:
+  - hetzner
+  - cloud
+  - hcloud
+  - prometheus
+  - sd
+  - service-discovery
+
+sources:
+  - https://github.com/promhippie/prometheus-hcloud-sd
+
+maintainers:
+  - name: tboerger
+    email: thomas@webhippie.de
+    url: https://github.com/tboerger
+
+annotations:
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/signKey: |
+    fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
+    url: https://raw.githubusercontent.com/promhippie/charts/master/promhippie.key
+
+...
