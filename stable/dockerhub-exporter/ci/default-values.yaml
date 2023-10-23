@@ -1,6 +1,7 @@
 ---
-config:
-  username: dummy
-  password: dummy
+exporter:
+  org: promhippie
+  user: tboerger
+  repo: webhippie/*
 
 ...

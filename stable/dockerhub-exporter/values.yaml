@@ -35,7 +35,10 @@ labels: {}
 annotations: {}
 
 # -- Security context for the deployment
-securityContext:
+securityContext: {}
+
+# -- Security context for the pod
+podSecurityContext:
   runAsGroup: 10000
   runAsUser: 10000
   runAsNonRoot: true
@@ -61,6 +64,29 @@ service:
     # prometheus.io/scrape: "true"
 
   # -- Additional labels for the service
+  labels: {}
+
+ingress:
+  # -- Enable ingress
+  enabled: false
+
+  # -- (string) Class name for the ingress resource
+  className:
+
+  # -- Host definition for ingress
+  hosts:
+    - host: example.local
+      paths:
+        - path: /
+          pathType: Prefix
+
+  # -- Optional TLS configuration for ingress
+  tls: []
+
+  # -- Additional annotations for the ingress
+  annotations: {}
+
+  # -- Additional labels for the ingress
   labels: {}
 
 # -- Resources for the deployment
@@ -137,27 +163,54 @@ envFromConfigMap: ""
 
 # -- Extra environment variables from mapping
 extraEnvVariables: {}
-  # DOCKERHUB_EXPORTER_ORG: promhippie
-  # DOCKERHUB_EXPORTER_USER: tboerger
-  # DOCKERHUB_EXPORTER_REPO: webhippie/*
+  # DOCKERHUB_EXPORTER_WEB_CONFIG: /etc/dockerhub-exporter-files/web_config.yaml
 
 # -- Extra environment variables from secrets
 extraEnvSecrets: {}
 
+# -- List of extra init containers
+extraInitContainers: []
+
+# -- List of extra volumes
+extraVolumes: []
+
+# -- List of extra volume mounts
+extraVolumeMounts: []
+
+# -- List of files written to a configmap and mounted to /etc/dockerhub-exporter-files
+files: {}
+  # web_config.yaml: |
+  #   basic_auth_users:
+  #     example: $2y$05$a.7HgF3w3/V7kXRx9XNK9.klJbvALBvtACWdFTQ6VsC/diXVqToMW
+
 config:
-  # -- Username for DockerHub access
-  username: ""
+  # -- (string) Username for DockerHub access
+  username: ~
 
   # -- Key used within secret for username
   usernameKey: username
 
-  # -- Password for DockerHub access
-  password: ""
+  # -- (string) Password for DockerHub access
+  password: ~
 
   # -- Key used within secret for password
   passwordKey: password
 
-  # -- Existing secret to use for credentials
-  existingSecret:
+  # -- (string) Existing secret to use for credentials
+  existingSecret: ~
+
+exporter:
+  # -- (string) Organizations to scrape metrics from
+  org: ~
+
+  # -- (string) Users to scrape metrics from
+  user: ~
+
+  # -- (string) Repositories to scrape metrics from
+  repo: ~
+
+collector:
+  # -- Enable collector for repos
+  repos: true
 
 ...
