@@ -5,7 +5,10 @@ metadata:
   labels:
     {{- include "github-exporter.labels" . | nindent 4 }}
   annotations:
-{{- if not .Values.config.existingSecret }}
+{{- if .Values.files }}
+    checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+{{- end }}
+{{- if and (not .Values.config.existingSecret) (not .Values.webhook.existingSecret) (not .Values.database.existingSecret) }}
     checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
 {{- end }}
 {{- if  .Values.annotations }}
@@ -30,14 +33,24 @@ spec:
       imagePullSecrets:
       {{- range .Values.image.pullSecrets }}
         - name: {{ . }}
-      {{- end}}
+      {{- end }}
+      {{- end }}
+      {{- with .Values.securityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.extraInitContainers }}
+      initContainers:
+        {{ toYaml .Values.extraInitContainers | nindent 8 }}
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.podSecurityContext }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           env:
             {{- if eq .Values.config.authType "token" }}
             - name: GITHUB_EXPORTER_TOKEN
@@ -62,6 +75,68 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.config.existingSecret | default (include "github-exporter.fullname" .) }}
                   key: {{ .Values.config.privateKeyKey }}
+            {{- end }}
+            {{- if .Values.webhook.enabled }}
+            - name: GITHUB_EXPORTER_WEBHOOK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.webhook.existingSecret | default (include "github-exporter.webhookSecret" .) }}
+                  key: {{ .Values.webhook.secretKey }}
+            {{- if .Values.webhook.path }}
+            - name: GITHUB_EXPORTER_WEBHOOK_PATH
+              value: "{{ .Values.webhook.path }}"
+            {{- end }}
+            {{- end }}
+            {{- if .Values.database.enabled }}
+            - name: GITHUB_EXPORTER_DATABASE_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.existingSecret | default (include "github-exporter.databaseSecret" .) }}
+                  key: {{ .Values.database.dsnKey }}
+            {{- end }}
+            {{- if .Values.exporter.enterprises }}
+            - name: GITHUB_EXPORTER_ENTERPRISES
+              value: "{{ .Values.exporter.enterprises }}"
+            {{- end }}
+            {{- if .Values.exporter.orgs }}
+            - name: GITHUB_EXPORTER_ORGS
+              value: "{{ .Values.exporter.orgs }}"
+            {{- end }}
+            {{- if .Values.exporter.repos }}
+            - name: GITHUB_EXPORTER_REPOS
+              value: "{{ .Values.exporter.repos }}"
+            {{- end }}
+            {{- if ne .Values.collector.admin nil }}
+            - name: GITHUB_EXPORTER_COLLECTOR_ADMIN
+              value: "{{ .Values.collector.admin }}"
+            {{- end }}
+            {{- if ne .Values.collector.orgs nil }}
+            - name: GITHUB_EXPORTER_COLLECTOR_ORGS
+              value: "{{ .Values.collector.orgs }}"
+            {{- end }}
+            {{- if ne .Values.collector.repos nil }}
+            - name: GITHUB_EXPORTER_COLLECTOR_REPOS
+              value: "{{ .Values.collector.repos }}"
+            {{- end }}
+            {{- if ne .Values.collector.billing nil }}
+            - name: GITHUB_EXPORTER_COLLECTOR_BILLING
+              value: "{{ .Values.collector.billing }}"
+            {{- end }}
+            {{- if ne .Values.collector.runners nil }}
+            - name: GITHUB_EXPORTER_COLLECTOR_RUNNERS
+              value: "{{ .Values.collector.runners }}"
+            {{- end }}
+            {{- if ne .Values.collector.workflows nil }}
+            - name: GITHUB_EXPORTER_COLLECTOR_WORKFLOWS
+              value: "{{ .Values.collector.workflows }}"
+            {{- end }}
+            {{- if .Values.workflow.labels }}
+            - name: GITHUB_EXPORTER_WORKFLOWS_LABELS
+              value: "{{ .Values.workflow.labels | join "," }}"
+            {{- end }}
+            {{- if .Values.workflow.window }}
+            - name: GITHUB_EXPORTER_WORKFLOWS_WINDOW
+              value: "{{ .Values.workflow.window }}"
             {{- end }}
             {{- range $key, $value := .Values.extraEnvSecrets }}
             - name: {{ $key }}
@@ -101,6 +176,16 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- end }}
+          volumeMounts:
+            - name: exporter
+              mountPath: {{ .Values.persistence.mountPath }}
+            {{- if .Values.files }}
+            - name: files
+              mountPath: /etc/github-exporter-files
+            {{- end }}
+            {{- if .Values.extraVolumeMounts }}
+            {{ toYaml .Values.extraVolumeMounts | nindent 12 }}
+            {{- end }}
       {{- if .Values.nodeSelector }}
       nodeSelector:
         {{ toYaml .Values.nodeSelector | nindent 8 }}
@@ -113,3 +198,19 @@ spec:
       tolerations:
         {{ toYaml . | nindent 8 }}
       {{- end }}
+      volumes:
+        - name: exporter
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim | default (include "github-exporter.fullname" .) }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        {{- if .Values.files }}
+        - name: files
+          configMap:
+            name: {{ include "github-exporter.fullname" . }}-files
+        {{- end }}
+        {{- if .Values.extraVolumes }}
+        {{ toYaml .Values.extraVolumes | nindent 8 }}
+        {{- end }}

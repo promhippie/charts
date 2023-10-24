@@ -36,6 +36,10 @@ annotations: {}
 
 # -- Security context for the deployment
 securityContext:
+  fsGroup: 10000
+
+# -- Security context for the pod
+podSecurityContext:
   runAsGroup: 10000
   runAsUser: 10000
   runAsNonRoot: true
@@ -62,6 +66,49 @@ service:
 
   # -- Additional labels for the service
   labels: {}
+
+ingress:
+  # -- Enable ingress
+  enabled: false
+
+  # -- (string) Class name for the ingress resource
+  className:
+
+  # -- Host definition for ingress
+  hosts:
+    - host: example.local
+      paths:
+        - path: /
+          pathType: Prefix
+
+  # -- Optional TLS configuration for ingress
+  tls: []
+
+  # -- Additional annotations for the ingress
+  annotations: {}
+
+  # -- Additional labels for the ingress
+  labels: {}
+
+persistence:
+  # -- Enable persistence for the exporter
+  enabled: false
+
+  # -- Size for the exporter volume
+  size: 1G
+
+  # -- Storage class used for the exporter volume
+  storageClass:
+
+  # -- Access modes used for the exporter volume
+  accessModes:
+    - ReadWriteOnce
+
+  # -- Name of an already existing claim
+  existingClaim:
+
+  # -- Path to mount the exporter volume
+  mountPath: /var/lib/exporter
 
 # -- Resources for the deployment
 resources: {}
@@ -137,41 +184,120 @@ envFromConfigMap: ""
 
 # -- Extra environment variables from mapping
 extraEnvVariables: {}
-  # GITHUB_EXPORTER_ORGS: promhippie
-  # GITHUB_EXPORTER_REPOS: promhippie/*
+  # GITHUB_EXPORTER_WEB_CONFIG: /etc/github-exporter-files/web_config.yaml
 
 # -- Extra environment variables from secrets
 extraEnvSecrets: {}
+
+# -- List of extra init containers
+extraInitContainers: []
+
+# -- List of extra volumes
+extraVolumes: []
+
+# -- List of extra volume mounts
+extraVolumeMounts: []
+
+# -- List of files written to a configmap and mounted to /etc/github-exporter-files
+files: {}
+  # web_config.yaml: |
+  #   basic_auth_users:
+  #     example: $2y$05$a.7HgF3w3/V7kXRx9XNK9.klJbvALBvtACWdFTQ6VsC/diXVqToMW
 
 config:
   # -- Authentication mode, could be `token` or `app`
   authType: token
 
-  # -- Access token for GitHub
-  token: ""
+  # -- (string) Access token for GitHub
+  token: ~
 
   # -- Key used within secret for token
   tokenKey: token
 
-  # -- App ID used for GitHub app
-  appId: ""
+  # -- (number) App ID used for GitHub app
+  appId: ~
 
   # -- Key used within secret for appId
   appIdKey: appId
 
-  # -- Installation ID used for GitHub app
-  installationId: ""
+  # -- (number) Installation ID used for GitHub app
+  installationId: ~
 
   # -- Key used within secret for installationId
   installationIdKey: installationId
 
-  # -- Private key in base64 encoded format
-  privateKey: ""
+  # -- (string) Private key in base64 encoded format
+  privateKey: ~
 
   # -- Key used within secret for privateKey
   privateKeyKey: privateKey
 
-  # -- Existing secret to use for credentials
-  existingSecret:
+  # -- (string) Existing secret to use for credentials
+  existingSecret: ~
+
+webhook:
+  # -- Enable webhook secret integration
+  enabled: false
+
+  # -- (string) Secret for webhook authentication
+  secret: ~
+
+  # -- Key used within secret for webhook
+  secretKey: secret
+
+  # -- (string) Existing secret to use for credentials
+  existingSecret: ~
+
+  # -- (string) Path for webhook endpoint
+  path: ~
+
+database:
+  # -- Enable database secret integration
+  enabled: false
+
+  # -- (string) DSN for used database and credentials
+  dsn: sqlite:///var/lib/exporter/database.sqlite3
+
+  # -- Key used within secret for webhook
+  dsnKey: dsn
+
+  # -- (string) Existing secret to use for credentials
+  existingSecret: ~
+
+exporter:
+  # -- (string) Enterprises to scrape metrics from
+  enterprises: ~
+
+  # -- (string) Organizations to scrape metrics from
+  orgs: ~
+
+  # -- (string) Repositories to scrape metrics from
+  repos: ~
+
+collector:
+  # -- Enable collector for admin
+  admin: false
+
+  # -- Enable collector for orgs
+  orgs: true
+
+  # -- Enable collector for repos
+  repos: true
+
+  # -- Enable collector for billing
+  billing: false
+
+  # -- Enable collector for runners
+  runners: false
+
+  # -- Enable collector for workflows
+  workflows: false
+
+workflow:
+  # -- List of labels assigned for workflow metrics
+  labels: []
+
+  # -- (string) Duration to keep workflow metrics
+  window: 24h
 
 ...

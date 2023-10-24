@@ -1,0 +1,27 @@
+{{- if and (not .Values.persistence.existingClaim) .Values.persistence.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "github-exporter.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "github-exporter.labels" . | nindent 4 }}
+{{- if .Values.labels }}
+    {{- toYaml .Values.labels | nindent 4 }}
+{{- end }}
+{{- if  .Values.annotations }}
+  annotations:
+    {{- toYaml .Values.annotations | nindent 4 }}
+{{- end }}
+spec:
+  {{- if not (empty .Values.persistence.storageClass) }}
+  storageClassName: {{ .Values.persistence.storageClass }}
+  {{- end }}
+  accessModes:
+  {{- range .Values.persistence.accessModes }}
+    - {{ . | quote }}
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.size | quote }}
+{{- end }}

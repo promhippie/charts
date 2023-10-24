@@ -64,3 +64,17 @@ Selector labels
 app.kubernetes.io/name: {{ include "github-exporter.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
+
+{{/*
+Secret name for webhook
+*/}}
+{{- define "github-exporter.webhookSecret" -}}
+{{ include "github-exporter.fullname" . }}-webhook
+{{- end -}}
+
+{{/*
+Secret name for database
+*/}}
+{{- define "github-exporter.databaseSecret" -}}
+{{ include "github-exporter.fullname" . }}-database
+{{- end -}}
