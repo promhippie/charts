@@ -35,7 +35,10 @@ labels: {}
 annotations: {}
 
 # -- Security context for the deployment
-securityContext:
+securityContext: {}
+
+# -- Security context for the pod
+podSecurityContext:
   runAsGroup: 10000
   runAsUser: 10000
   runAsNonRoot: true
@@ -61,6 +64,29 @@ service:
     # prometheus.io/scrape: "true"
 
   # -- Additional labels for the service
+  labels: {}
+
+ingress:
+  # -- Enable ingress
+  enabled: false
+
+  # -- (string) Class name for the ingress resource
+  className:
+
+  # -- Host definition for ingress
+  hosts:
+    - host: example.local
+      paths:
+        - path: /
+          pathType: Prefix
+
+  # -- Optional TLS configuration for ingress
+  tls: []
+
+  # -- Additional annotations for the ingress
+  annotations: {}
+
+  # -- Additional labels for the ingress
   labels: {}
 
 # -- Resources for the deployment
@@ -141,6 +167,15 @@ extraEnvVariables: {}
 
 # -- Extra environment variables from secrets
 extraEnvSecrets: {}
+
+# -- List of extra init containers
+extraInitContainers: []
+
+# -- List of extra volumes
+extraVolumes: []
+
+# -- List of extra volume mounts
+extraVolumeMounts: []
 
 sd:
   # -- Service discovery engine, should be `http` in most cases
