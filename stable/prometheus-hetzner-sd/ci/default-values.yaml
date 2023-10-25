@@ -1,4 +1,36 @@
----
-credentials: []
+credentials:
+  - project: ENC[AES256_GCM,data:gw7Z1AoJdQ==,iv:L88TXBHqquddxd/BGzoU2z14RV26QbdeWD+imd85AXk=,tag:MzUe3qO1U0VVZbBk6JcXLQ==,type:str]
+    username: ENC[AES256_GCM,data:zWng+ujnayFmO2Hu,iv:VWroEjEGVxq4w6ngzV6GTliFfgFsmFpU3nzhS8dMxJw=,tag:YFFr4cO71bTdCjp6/DCU1g==,type:str]
+    password: ENC[AES256_GCM,data:DqS9yUYzYem16my3hXgOPjwWFLGtENY+,iv:E0w9yY30IFFFVxYw/iApnWg+7vxFlBOOkrXQxyQcR+I=,tag:cqlCqidzRRO+236zzM/2mw==,type:str]
 
-...
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age: []
+  lastmodified: "2023-10-25T14:28:54Z"
+  mac: ENC[AES256_GCM,data:oBDGraZIb6O5p+OZc/XuJpfxXf6gfZoNF7JTFPpz0X0HzeDpWewbi8CRjEdqeWO6h+eDd/O4NhcYjPTQNUsBn5qVerx04f2BJ9mJiru/zrGRIrCZZNsHAXA2ct/aiT5cW+i9qyWvHyk8amVrheek9V6y+ej2Dp7DyMPfgdVzEwM=,iv:QcQ8Cv8B7IgOsHlHownX4mzNaI2BQgZ2z6J76JQl7Vw=,tag:9czcxIE9x9BwsLndZo8kbw==,type:str]
+  pgp:
+    - created_at: "2023-10-25T14:28:54Z"
+      enc: |-
+        -----BEGIN PGP MESSAGE-----
+
+        hQIMA+P+fqOUW2kiARAAjzFFdb/+HZqVXIimiYM7HaeaWLnpKHZ6YVNkwTaSAmSW
+        Yw+X9z5rhyOgkuoeOV6C9vy8FwsroLmsBMDyzNKU3EoUatj8pZMUUHCHGoOWncES
+        x0zGnQlxJEPfJEPP3zF5SoKnssQt05Z87Ug7+uVQQaraPb7/sobLxoyJFz3nnKL9
+        oJhJtcbpTq5a2w0QMGTlbTxosNzx0CCm6fM+s0ITW7DTQKVprzbH+O/f6f6C9Qop
+        /fiWviJdy5WUxpvd4XsfJd0O3ZGa99+SpAJ5+UqI95Opl7zgx6TAwAy25KSav9Hh
+        SeX9bE3mZeEniK9x6gfpGjzDI/xyCslKim3a6D2apNJsv1pxHzGGkYfp9LS7tqSK
+        mDz47I8bd1yKr4zc535RhILzgrdjqxlhFouvBRIbrLvf6AZfmKr/aSGGwkGaVwMb
+        1p24A4CqZqA3OQEXJqqQl6ydpQi4kwKrr36rZ+p0vSx7y2U0OWcW4IxKtwto+z4y
+        +IvvaYiScQ7UZ4Gh6sWcrC+ZECC4ql2mnsPb/2cI2aCZxXGeVXDN0EnHjcSSq6hi
+        yg2uStRz9P52EALkcy7eW8i68LTNSUXvMc4XF+p4kRwqnBvaTKDInZah3OmDIfln
+        vXi9INMC4fEty2GzDdgo9hETT3Up3jfHuv3I0X3nKwL8aci/FjmCcTCLsn55U/TS
+        XgFkgR3gKdQRxO8VhAM4CBG8Qzs7C6SVF2dRR9JhmEhXc0Lf+ooCP7UG0m6LRUWT
+        C/PFzjuSRWuZ04JJjBkIpp1v0yVHoew8R9B9icMjBC1sZkwc5hl3nCqUoONzFjY=
+        =PZ6E
+        -----END PGP MESSAGE-----
+      fp: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
+  unencrypted_suffix: _unencrypted
+  version: 3.8.1
