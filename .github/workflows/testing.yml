@@ -17,9 +17,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup helm
-        id: helm
-        uses: azure/setup-helm@v3
+      - name: Setup gnupg
+        id: gnupg
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GNUPG_KEY }}
+          passphrase: ${{ secrets.GNUPG_PASSWORD }}
+          trust_level: 5
 
       - name: Setup python
         id: python
@@ -30,6 +34,15 @@ jobs:
       - name: Setup testing
         id: setup
         uses: helm/chart-testing-action@v2.4.0
+
+      - name: Setup helm
+        id: helm
+        uses: azure/setup-helm@v3
+
+      - name: Helm plugins
+        id: plugins
+        run: |
+          helm plugin install https://github.com/jkroepke/helm-secrets
 
       - name: Detect testing
         id: detect
@@ -54,6 +67,8 @@ jobs:
       - name: Run testing
         id: testing
         if: steps.detect.outputs.changed == 'true'
+        env:
+          HELM_SECRETS_WRAPPER_ENABLED: 'true'
         run: |
           ct install --config ct.yaml --target-branch ${{ github.event.repository.default_branch }}
 
