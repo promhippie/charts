@@ -35,7 +35,10 @@ labels: {}
 annotations: {}
 
 # -- Security context for the deployment
-securityContext:
+securityContext: {}
+
+# -- Security context for the pod
+podSecurityContext:
   runAsGroup: 10000
   runAsUser: 10000
   runAsNonRoot: true
@@ -61,6 +64,29 @@ service:
     # prometheus.io/scrape: "true"
 
   # -- Additional labels for the service
+  labels: {}
+
+ingress:
+  # -- Enable ingress
+  enabled: false
+
+  # -- (string) Class name for the ingress resource
+  className:
+
+  # -- Host definition for ingress
+  hosts:
+    - host: example.local
+      paths:
+        - path: /
+          pathType: Prefix
+
+  # -- Optional TLS configuration for ingress
+  tls: []
+
+  # -- Additional annotations for the ingress
+  annotations: {}
+
+  # -- Additional labels for the ingress
   labels: {}
 
 # -- Resources for the deployment
@@ -137,19 +163,59 @@ envFromConfigMap: ""
 
 # -- Extra environment variables from mapping
 extraEnvVariables: {}
-  # HCLOUD_EXPORTER_COLLECTOR_SERVERS: true
+  # HCLOUD_EXPORTER_WEB_CONFIG: /etc/hcloud-exporter-files/web_config.yaml
 
 # -- Extra environment variables from secrets
 extraEnvSecrets: {}
 
+# -- List of extra init containers
+extraInitContainers: []
+
+# -- List of extra volumes
+extraVolumes: []
+
+# -- List of extra volume mounts
+extraVolumeMounts: []
+
+# -- List of files written to a configmap and mounted to /etc/hcloud-exporter-files
+files: {}
+  # web_config.yaml: |
+  #   basic_auth_users:
+  #     example: $2y$05$a.7HgF3w3/V7kXRx9XNK9.klJbvALBvtACWdFTQ6VsC/diXVqToMW
+
 config:
-  # -- Access token for Hetzner Cloud
-  token: ""
+  # -- (string) Access token for Hetzner Cloud
+  token:  ~
 
   # -- Key used within secret for token
   tokenKey: token
 
-  # -- Existing secret to use for credentials
-  existingSecret:
+  # -- (string) Existing secret to use for credentials
+  existingSecret: ~
+
+collector:
+  # -- Enable collector for floating IPs
+  floatingIps: true
+
+  # -- Enable collector for images
+  images: true
+
+  # -- Enable collector for pricing
+  pricing: true
+
+  # -- Enable collector for servers
+  servers: true
+
+  # -- Enable collector for server metrics
+  serverMetrics: false
+
+  # -- Enable collector for load balancers
+  loadBalancers: true
+
+  # -- Enable collector for SSH keys
+  sshKeys: true
+
+  # -- Enable collector for volumes
+  volumes: false
 
 ...
