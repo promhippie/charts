@@ -33,14 +33,24 @@ spec:
       imagePullSecrets:
       {{- range .Values.image.pullSecrets }}
         - name: {{ . }}
-      {{- end}}
+      {{- end }}
+      {{- end }}
+      {{- with .Values.securityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.extraInitContainers }}
+      initContainers:
+        {{ toYaml .Values.extraInitContainers | nindent 8 }}
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.podSecurityContext }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           env:
             - name: PROMETHEUS_HCLOUD_OUTPUT_ENGINE
               value: {{ .Values.sd.engine | quote }}
@@ -98,7 +108,10 @@ spec:
               mountPath: /etc/prometheus-hcloud-creds
             {{- end }}
             - name: output
-              mountPath: /etc/prometheus-hcloud-sd
+              mountPath: {{ .Values.sd.output | dir }}
+            {{- if .Values.extraVolumeMounts }}
+            {{ toYaml .Values.extraVolumeMounts | nindent 12 }}
+            {{- end }}
       {{- if .Values.nodeSelector }}
       nodeSelector:
         {{ toYaml .Values.nodeSelector | nindent 8 }}
@@ -124,3 +137,6 @@ spec:
         {{- end }}
         - name: output
           emptyDir: {}
+        {{- if .Values.extraVolumes }}
+        {{ toYaml .Values.extraVolumes | nindent 8 }}
+        {{- end }}

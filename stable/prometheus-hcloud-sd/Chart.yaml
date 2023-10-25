@@ -5,9 +5,8 @@ name: prometheus-hcloud-sd
 description: A Helm chart for Prometheus Hetzner Cloud SD
 type: application
 
-# renovate: datasource=docker depName=quay.io/promhippie/prometheus-hcloud-sd
 appVersion: 0.6.0
-version: 1.1.1
+version: 1.2.0
 
 home: https://promhippie.github.io/prometheus-hcloud-sd/
 icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hetzner.svg
