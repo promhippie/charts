@@ -35,7 +35,10 @@ labels: {}
 annotations: {}
 
 # -- Security context for the deployment
-securityContext:
+securityContext: {}
+
+# -- Security context for the pod
+podSecurityContext:
   runAsGroup: 10000
   runAsUser: 10000
   runAsNonRoot: true
@@ -61,6 +64,29 @@ service:
     # prometheus.io/scrape: "true"
 
   # -- Additional labels for the service
+  labels: {}
+
+ingress:
+  # -- Enable ingress
+  enabled: false
+
+  # -- (string) Class name for the ingress resource
+  className:
+
+  # -- Host definition for ingress
+  hosts:
+    - host: example.local
+      paths:
+        - path: /
+          pathType: Prefix
+
+  # -- Optional TLS configuration for ingress
+  tls: []
+
+  # -- Additional annotations for the ingress
+  annotations: {}
+
+  # -- Additional labels for the ingress
   labels: {}
 
 # -- Resources for the deployment
@@ -137,28 +163,47 @@ envFromConfigMap: ""
 
 # -- Extra environment variables from mapping
 extraEnvVariables: {}
-  # JENKINS_EXPORTER_COLLECTOR_JOBS: true
+  # JENKINS_EXPORTER_WEB_CONFIG: /etc/jenkins-exporter-files/web_config.yaml
 
 # -- Extra environment variables from secrets
 extraEnvSecrets: {}
 
-config:
-  # -- URL to access the Jenkins server
-  url: ""
+# -- List of extra init containers
+extraInitContainers: []
 
-  # -- Username for Jenkins access
-  username: ""
+# -- List of extra volumes
+extraVolumes: []
+
+# -- List of extra volume mounts
+extraVolumeMounts: []
+
+# -- List of files written to a configmap and mounted to /etc/jenkins-exporter-files
+files: {}
+  # web_config.yaml: |
+  #   basic_auth_users:
+  #     example: $2y$05$a.7HgF3w3/V7kXRx9XNK9.klJbvALBvtACWdFTQ6VsC/diXVqToMW
+
+config:
+  # -- (string) URL to access the Jenkins server
+  url: ~
+
+  # -- (string) Username for Jenkins access
+  username: ~
 
   # -- Key used within secret for username
   usernameKey: username
 
-  # -- Password for Jenkins access
-  password: ""
+  # -- (string) Password for Jenkins access
+  password: ~
 
   # -- Key used within secret for password
   passwordKey: password
 
-  # -- Existing secret to use for credentials
-  existingSecret:
+  # -- (string) Existing secret to use for credentials
+  existingSecret: ~
+
+collector:
+  # -- Enable collector for jobs
+  jobs: true
 
 ...
