@@ -5,9 +5,8 @@ name: hetzner-exporter
 description: A Helm chart for hetzner-exporter
 type: application
 
-# renovate: datasource=docker depName=quay.io/promhippie/hetzner-exporter
 appVersion: 1.1.0
-version: 1.1.1
+version: 1.2.0
 
 home: https://promhippie.github.io/hetzner_exporter/
 icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hetzner.svg

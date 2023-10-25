@@ -5,6 +5,9 @@ metadata:
   labels:
     {{- include "hetzner-exporter.labels" . | nindent 4 }}
   annotations:
+{{- if .Values.files }}
+    checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+{{- end }}
 {{- if not .Values.config.existingSecret }}
     checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
 {{- end }}
@@ -30,14 +33,24 @@ spec:
       imagePullSecrets:
       {{- range .Values.image.pullSecrets }}
         - name: {{ . }}
-      {{- end}}
+      {{- end }}
+      {{- end }}
+      {{- with .Values.securityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.extraInitContainers }}
+      initContainers:
+        {{ toYaml .Values.extraInitContainers | nindent 8 }}
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.podSecurityContext }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           env:
             - name: HETZNER_EXPORTER_USERNAME
               valueFrom:
@@ -49,6 +62,18 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.config.existingSecret | default (include "hetzner-exporter.fullname" .) }}
                   key: {{ .Values.config.passwordKey }}
+            {{- if ne .Values.collector.servers nil }}
+            - name: HETZNER_EXPORTER_COLLECTOR_SERVERS
+              value: "{{ .Values.collector.servers }}"
+            {{- end }}
+            {{- if ne .Values.collector.sshKeys nil }}
+            - name: HETZNER_EXPORTER_COLLECTOR_SSH_KEYS
+              value: "{{ .Values.collector.sshKeys }}"
+            {{- end }}
+            {{- if ne .Values.collector.storageboxes nil }}
+            - name: HETZNER_EXPORTER_COLLECTOR_STORAGEBOXES
+              value: "{{ .Values.collector.storageboxes }}"
+            {{- end }}
             {{- range $key, $value := .Values.extraEnvSecrets }}
             - name: {{ $key }}
               valueFrom:
@@ -87,6 +112,16 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- end }}
+          {{- if or .Values.extraVolumeMounts .Values.files }}
+          volumeMounts:
+            {{- if .Values.files }}
+            - name: files
+              mountPath: /etc/hetzner-exporter-files
+            {{- end }}
+            {{- if .Values.extraVolumeMounts }}
+            {{ toYaml .Values.extraVolumeMounts | nindent 12 }}
+            {{- end }}
+          {{- end }}
       {{- if .Values.nodeSelector }}
       nodeSelector:
         {{ toYaml .Values.nodeSelector | nindent 8 }}
@@ -98,4 +133,15 @@ spec:
       {{- with .Values.tolerations }}
       tolerations:
         {{ toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if or .Values.extraVolumes .Values.files }}
+      volumes:
+        {{- if .Values.files }}
+        - name: files
+          configMap:
+            name: {{ include "hetzner-exporter.fullname" . }}-files
+        {{- end }}
+        {{- if .Values.extraVolumes }}
+        {{ toYaml .Values.extraVolumes | nindent 8 }}
+        {{- end }}
       {{- end }}
