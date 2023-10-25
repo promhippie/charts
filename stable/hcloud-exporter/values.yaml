@@ -185,7 +185,7 @@ files: {}
 
 config:
   # -- (string) Access token for Hetzner Cloud
-  token:  ~
+  token: ~
 
   # -- Key used within secret for token
   tokenKey: token
