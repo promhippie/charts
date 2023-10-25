@@ -35,7 +35,10 @@ labels: {}
 annotations: {}
 
 # -- Security context for the deployment
-securityContext:
+securityContext: {}
+
+# -- Security context for the pod
+podSecurityContext:
   runAsGroup: 10000
   runAsUser: 10000
   runAsNonRoot: true
@@ -61,6 +64,29 @@ service:
     # prometheus.io/scrape: "true"
 
   # -- Additional labels for the service
+  labels: {}
+
+ingress:
+  # -- Enable ingress
+  enabled: false
+
+  # -- (string) Class name for the ingress resource
+  className:
+
+  # -- Host definition for ingress
+  hosts:
+    - host: example.local
+      paths:
+        - path: /
+          pathType: Prefix
+
+  # -- Optional TLS configuration for ingress
+  tls: []
+
+  # -- Additional annotations for the ingress
+  annotations: {}
+
+  # -- Additional labels for the ingress
   labels: {}
 
 # -- Resources for the deployment
@@ -137,37 +163,71 @@ envFromConfigMap: ""
 
 # -- Extra environment variables from mapping
 extraEnvVariables: {}
-  # SCW_EXPORTER_COLLECTOR_SERVERS: true
+  # SCW_EXPORTER_WEB_CONFIG: /etc/scw-exporter-files/web_config.yaml
 
 # -- Extra environment variables from secrets
 extraEnvSecrets: {}
 
+# -- List of extra init containers
+extraInitContainers: []
+
+# -- List of extra volumes
+extraVolumes: []
+
+# -- List of extra volume mounts
+extraVolumeMounts: []
+
+# -- List of files written to a configmap and mounted to /etc/scw-exporter-files
+files: {}
+  # web_config.yaml: |
+  #   basic_auth_users:
+  #     example: $2y$05$a.7HgF3w3/V7kXRx9XNK9.klJbvALBvtACWdFTQ6VsC/diXVqToMW
+
 config:
-  # -- Organization at Scaleway
-  org: ""
+  # -- (string) Organization at Scaleway
+  org: ~
 
-  # -- Zone at Scaleway
-  zone: ""
+  # -- (string) Zone at Scaleway
+  zone: ~
 
-  # -- Region at Scaleway
-  region: ""
+  # -- (string) Region at Scaleway
+  region: ~
 
-  # -- Project at Scaleway
-  project: ""
+  # -- (string) Project at Scaleway
+  project: ~
 
-  # -- Access key for Scaleway access
-  access: ""
+  # -- (string) Access key for Scaleway access
+  access: ~
 
   # -- Key used within secret for access key
   accessKey: accessKey
 
-  # -- Secret key for Scaleway access
-  secret: ""
+  # -- (string) Secret key for Scaleway access
+  secret: ~
 
   # -- Key used within secret for secret key
   secretKey: secretKey
 
-  # -- Existing secret to use for credentials
-  existingSecret:
+  # -- (string) Existing secret to use for credentials
+  existingSecret: ~
+
+collector:
+  # -- Enable collector for dashboard
+  dashboard: true
+
+  # -- Enable collector for security groups
+  securityGroups: true
+
+  # -- Enable collector for servers
+  servers: true
+
+  # -- Enable collector for baremtal
+  baremtal: true
+
+  # -- Enable collector for snapshots
+  snapshots: true
+
+  # -- Enable collector for volumes
+  volumes: true
 
 ...
