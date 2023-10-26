@@ -6,7 +6,7 @@ description: A Helm chart for hetzner-exporter
 type: application
 
 appVersion: 1.1.0
-version: 1.2.0
+version: 1.2.1
 
 home: https://promhippie.github.io/hetzner_exporter/
 icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hetzner.svg
@@ -30,5 +30,10 @@ annotations:
   artifacthub.io/signKey: |
     fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
     url: https://raw.githubusercontent.com/promhippie/charts/master/promhippie.key
+  artifacthub.io/links: |-
+    - name: Source
+      url: https://github.com/promhippie/hetzner_exporter
+    - name: Chart
+      url: https://github.com/promhippie/charts/tree/master/stable/hetzner-exporter
 
 ...

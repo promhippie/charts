@@ -6,7 +6,7 @@ description: A Helm chart for Prometheus Hetzner Cloud SD
 type: application
 
 appVersion: 0.6.0
-version: 1.2.0
+version: 1.2.1
 
 home: https://promhippie.github.io/prometheus-hcloud-sd/
 icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hetzner.svg
@@ -32,5 +32,10 @@ annotations:
   artifacthub.io/signKey: |
     fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
     url: https://raw.githubusercontent.com/promhippie/charts/master/promhippie.key
+  artifacthub.io/links: |-
+    - name: Source
+      url: https://github.com/promhippie/prometheus-hcloud-sd
+    - name: Chart
+      url: https://github.com/promhippie/charts/tree/master/stable/prometheus-hcloud-sd
 
 ...
