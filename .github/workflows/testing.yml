@@ -17,9 +17,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup helm
-        id: helm
-        uses: azure/setup-helm@v3
+      - name: Setup gnupg
+        id: gnupg
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GNUPG_KEY }}
+          passphrase: ${{ secrets.GNUPG_PASSWORD }}
+          trust_level: 5
 
       - name: Setup python
         id: python
@@ -27,32 +31,54 @@ jobs:
         with:
           python-version-file: .python-version
 
+      - name: Setup sops
+        uses: nhedger/setup-sops@v2
+
       - name: Setup testing
         id: setup
         uses: helm/chart-testing-action@v2.4.0
 
+      - name: Setup helm
+        id: helm
+        uses: azure/setup-helm@v3
+
+      - name: Helm plugins
+        id: plugins
+        run: |
+          helm plugin install https://github.com/jkroepke/helm-secrets
+
+      - name: Decrypt secrets
+        id: secrets
+        run: |
+          for FILE in $(find stable -iname \*.enc); do
+            helm secrets decrypt ${FILE} >| ${FILE%.enc}.yaml
+            echo >> ${FILE%.enc}.yaml
+          done
+
       - name: Detect testing
         id: detect
         run: |
-          CHANGED=$(ct list-changed --config ct.yaml)
+          CHANGED=$(ct list-changed --config ct.yaml --target-branch ${{ github.event.repository.default_branch }})
 
           if [[ -n "${CHANGED}" ]]; then
-            echo "::set-output name=changed::true"
+            echo "changed=true" >> "${GITHUB_OUTPUT}"
           fi
+
+      - name: Run Linting
+        id: linting
+        if: steps.detect.outputs.changed == 'true'
+        run: |
+          ct lint --config ct.yaml --target-branch ${{ github.event.repository.default_branch }}
 
       - name: Create kind
         id: kind
         if: steps.detect.outputs.changed == 'true'
         uses: helm/kind-action@v1.8.0
 
-      - name: Run Linting
-        id: linting
-        run: |
-          ct lint --config ct.yaml
-
       - name: Run testing
         id: testing
+        if: steps.detect.outputs.changed == 'true'
         run: |
-          ct install --config ct.yaml
+          ct install --config ct.yaml --target-branch ${{ github.event.repository.default_branch }}
 
 ...

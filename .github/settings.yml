@@ -60,7 +60,8 @@ branches:
       required_pull_request_reviews: null
       required_status_checks:
         strict: true
-        contexts: []
+        contexts:
+          - testing
       enforce_admins: false
       restrictions:
         apps:

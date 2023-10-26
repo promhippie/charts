@@ -1,0 +1,34 @@
+---
+apiVersion: v2
+
+name: scw-exporter
+description: A Helm chart for scw-exporter
+type: application
+
+appVersion: 1.0.0
+version: 2.1.0
+
+home: https://promhippie.github.io/scw_exporter/
+icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/scaleway.svg
+
+keywords:
+  - scw
+  - scaleway
+  - prometheus
+  - exporter
+
+sources:
+  - https://github.com/promhippie/scw_exporter
+
+maintainers:
+  - name: tboerger
+    email: thomas@webhippie.de
+    url: https://github.com/tboerger
+
+annotations:
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/signKey: |
+    fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
+    url: https://raw.githubusercontent.com/promhippie/charts/master/promhippie.key
+
+...

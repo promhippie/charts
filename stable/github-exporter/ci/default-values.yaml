@@ -1,0 +1,16 @@
+---
+config:
+  authType: none
+
+exporter:
+  orgs: promhippie
+  repos: promhippie/*
+
+webhook:
+  enabled: true
+  secret: QjT9D432KhI9NwMAxJ9dNDZ7
+
+database:
+  enabled: true
+
+...

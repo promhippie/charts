@@ -2,6 +2,7 @@
 name: release
 
 "on":
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -9,33 +10,73 @@ name: release
 jobs:
   release:
     runs-on: ubuntu-latest
+    if: github.repository == 'promhippie/charts'
 
     steps:
       - name: Checkout source
         id: source
         uses: actions/checkout@v4
         with:
+          token: ${{ secrets.BOT_ACCESS_TOKEN }}
           fetch-depth: 0
 
-      - name: Import gnupg
-        id: gnupg
-        uses: cresh-io/action-gpg@v2
+      - name: Setup helm
+        id: helm
+        uses: azure/setup-helm@v3
+
+      - name: Configure Git
+        id: git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "github@webhippie.de"
+
+      - name: Update readme
+        id: docs
+        uses: docker://jnorwood/helm-docs:v1.11.3
         with:
-            gpg-sign-key: ${{ secrets.GNUPG_ENCODED }}
-            gpg-passphrase: ${{ secrets.GNUPG_PASSWORD }}
-            git-email: promhippie@webhippie.de
-            git-username: Promhippie
+          entrypoint: helm-docs
 
       - name: Write secring
         id: secring
         run: |
-          gpg --output secring.gpg --export-secret-keys
+          echo -n "${{ secrets.GNUPG_SECRING }}" \
+            | base64 --decode \
+            > secring.gpg
+
+      - name: Write passphrase
+        id: passphrase
+        run: |
+          echo -n "${{ secrets.GNUPG_PASSWORD }}" \
+            > passphrase
 
       - name: Run releaser
         id: releaser
         uses: helm/chart-releaser-action@v1.5.0
         env:
-          CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CR_TOKEN: ${{ secrets.BOT_ACCESS_TOKEN }}
           CR_KEYRING: secring.gpg
+          CR_PASSPHRASE_FILE: passphrase
+        with:
+          config: cr.yaml
+          charts_dir: stable
+
+      - name: Push charts
+        run: |
+          echo "${{ secrets.BOT_ACCESS_TOKEN }}" | helm registry login --username bothippie --password-stdin ghcr.io
+
+          for pkg in .cr-release-packages/*.tgz; do
+            if [ -z "${pkg:-}" ]; then
+              break
+            fi
+
+            echo "Pushing $pkg..."
+            helm push "$pkg" "oci://ghcr.io/$GITHUB_REPOSITORY_OWNER/charts"
+          done
+
+      - name: Remove secrets
+        id: cleanup
+        if: always()
+        run: |
+          rm -f secring.gpg passphrase
 
 ...

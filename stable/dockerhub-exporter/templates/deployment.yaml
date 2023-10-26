@@ -1,0 +1,157 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "dockerhub-exporter.fullname" . }}
+  labels:
+    {{- include "dockerhub-exporter.labels" . | nindent 4 }}
+  annotations:
+{{- if .Values.files }}
+    checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+{{- end }}
+{{- if not .Values.config.existingSecret }}
+    checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
+{{- end }}
+{{- if  .Values.annotations }}
+{{ toYaml .Values.annotations | indent 4 }}
+{{- end }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "dockerhub-exporter.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "dockerhub-exporter.labels" . | nindent 8 }}
+      annotations:
+        {{- if .Values.files }}
+        checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        {{- end }}
+        {{- if not .Values.config.existingSecret }}
+        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
+        {{- end }}
+        {{- if  .Values.annotations }}
+        {{- toYaml .Values.annotations | nindent 8 }}
+        {{- end }}
+    spec:
+      serviceAccountName: {{ include "dockerhub-exporter.serviceAccountName" . }}
+      {{- if .Values.image.pullSecrets }}
+      imagePullSecrets:
+      {{- range .Values.image.pullSecrets }}
+        - name: {{ . }}
+      {{- end }}
+      {{- end }}
+      {{- with .Values.securityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.extraInitContainers }}
+      initContainers:
+        {{ toYaml .Values.extraInitContainers | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.podSecurityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          env:
+            - name: DOCKERHUB_EXPORTER_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.config.existingSecret | default (include "dockerhub-exporter.fullname" .) }}
+                  key: {{ .Values.config.usernameKey }}
+            - name: DOCKERHUB_EXPORTER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.config.existingSecret | default (include "dockerhub-exporter.fullname" .) }}
+                  key: {{ .Values.config.passwordKey }}
+            {{- if .Values.exporter.org }}
+            - name: DOCKERHUB_EXPORTER_ORG
+              value: "{{ .Values.exporter.org }}"
+            {{- end }}
+            {{- if .Values.exporter.user }}
+            - name: DOCKERHUB_EXPORTER_USER
+              value: "{{ .Values.exporter.user }}"
+            {{- end }}
+            {{- if .Values.exporter.repo }}
+            - name: DOCKERHUB_EXPORTER_REPO
+              value: "{{ .Values.exporter.repo }}"
+            {{- end }}
+            {{- if ne .Values.collector.repos nil }}
+            - name: DOCKERHUB_EXPORTER_COLLECTOR_REPOS
+              value: "{{ .Values.collector.repos }}"
+            {{- end }}
+            {{- range $key, $value := .Values.extraEnvSecrets }}
+            - name: {{ $key }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ required "Must specify secret!" $value.secret }}
+                  key: {{ required "Must specify key!" $value.key }}
+            {{- end }}
+            {{- range $key, $value := .Values.extraEnvVariables }}
+            - name: {{ $key }}
+              value: "{{ $value }}"
+            {{- end }}
+          {{- if or .Values.envFromSecret .Values.envFromConfigMap }}
+          envFrom:
+          {{- if .Values.envFromSecret }}
+            - secretRef:
+                name: {{ .Values.envFromSecret }}
+          {{- end }}
+          {{- if .Values.envFromConfigMap }}
+            - configMapRef:
+                name: {{ .Values.envFromConfigMap }}
+          {{- end }}
+          {{- end }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.internalPort }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: http
+          {{- if .Values.resources }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- end }}
+          {{- if or .Values.extraVolumeMounts .Values.files }}
+          volumeMounts:
+            {{- if .Values.files }}
+            - name: files
+              mountPath: /etc/dockerhub-exporter-files
+            {{- end }}
+            {{- if .Values.extraVolumeMounts }}
+            {{ toYaml .Values.extraVolumeMounts | nindent 12 }}
+            {{- end }}
+          {{- end }}
+      {{- if .Values.nodeSelector }}
+      nodeSelector:
+        {{ toYaml .Values.nodeSelector | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{ toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{ toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if or .Values.extraVolumes .Values.files }}
+      volumes:
+        {{- if .Values.files }}
+        - name: files
+          configMap:
+            name: {{ include "dockerhub-exporter.fullname" . }}-files
+        {{- end }}
+        {{- if .Values.extraVolumes }}
+        {{ toYaml .Values.extraVolumes | nindent 8 }}
+        {{- end }}
+      {{- end }}

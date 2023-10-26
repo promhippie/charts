@@ -1,0 +1,216 @@
+---
+# -- Override the name
+nameOverride: ""
+
+# -- Override the fullname
+fullnameOverride: ""
+
+# -- Replicas for the deployment
+replicaCount: 1
+
+image:
+  # -- Image repository used by deployment
+  repository: quay.io/promhippie/dockerhub-exporter
+
+  # -- Optional tag for the repository, defaults to app version
+  tag: ""
+
+  # -- Image pull policy
+  pullPolicy: IfNotPresent
+
+  # -- Optional name of pull secret if using a private registry
+  pullSecrets: []
+
+serviceAccount:
+  # -- Create a new service account
+  create: true
+
+  # -- Optional name for an existing service account
+  name: ""
+
+# -- Define additional labels
+labels: {}
+
+# -- Define additional annotations
+annotations: {}
+
+# -- Security context for the deployment
+securityContext: {}
+
+# -- Security context for the pod
+podSecurityContext:
+  runAsGroup: 10000
+  runAsUser: 10000
+  runAsNonRoot: true
+  readOnlyRootFilesystem: true
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop: ["all"]
+
+service:
+  # -- Type of the service
+  type: ClusterIP
+
+  # -- Port of the service
+  port: 9505
+
+  # -- Internal port of the service
+  internalPort: 9505
+
+  # -- Additional annotations for the service
+  annotations: {}
+    # prometheus.io/path: /metrics
+    # prometheus.io/port: "9505"
+    # prometheus.io/scrape: "true"
+
+  # -- Additional labels for the service
+  labels: {}
+
+ingress:
+  # -- Enable ingress
+  enabled: false
+
+  # -- (string) Class name for the ingress resource
+  className:
+
+  # -- Host definition for ingress
+  hosts:
+    - host: example.local
+      paths:
+        - path: /
+          pathType: Prefix
+
+  # -- Optional TLS configuration for ingress
+  tls: []
+
+  # -- Additional annotations for the ingress
+  annotations: {}
+
+  # -- Additional labels for the ingress
+  labels: {}
+
+# -- Resources for the deployment
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# -- Node selector for the deployment
+nodeSelector: {}
+
+# -- Affinity for the deployment
+affinity: {}
+
+# -- Tolerations for the deployment
+tolerations: []
+
+serviceMonitor:
+  # -- Enable service monitor integration
+  enabled: false
+
+  # -- Namespace used by service monitor
+  namespace: ""
+
+  # -- Additional labels for the service monitor
+  labels: {}
+
+  # -- Scrape interval
+  interval: 30s
+
+  # -- Scrape path
+  telemetryPath: /metrics
+
+  # -- Scrape timeout
+  timeout: 30s
+
+  # -- Metric relabeling configuration
+  metricRelabelings: []
+
+  # -- Relabeling configuration
+  relabelings: []
+
+  # -- Target labels
+  targetLabels: []
+
+  # -- Optionally override the job label
+  jobLabel:
+
+prometheusRule:
+  # -- Enable custom prometheus rules
+  enabled: false
+
+  # -- Namespace used by prometheus rules
+  namespace: ""
+
+  # -- Additional labels for prometheus rules
+  additionalLabels: {}
+
+  # -- Rules definition
+  rules: []
+
+# -- environment variables from existing secret
+envFromSecret: ""
+
+# -- Environment variables from existing configmap
+envFromConfigMap: ""
+
+# -- Extra environment variables from mapping
+extraEnvVariables: {}
+  # DOCKERHUB_EXPORTER_WEB_CONFIG: /etc/dockerhub-exporter-files/web_config.yaml
+
+# -- Extra environment variables from secrets
+extraEnvSecrets: {}
+
+# -- List of extra init containers
+extraInitContainers: []
+
+# -- List of extra volumes
+extraVolumes: []
+
+# -- List of extra volume mounts
+extraVolumeMounts: []
+
+# -- List of files written to a configmap and mounted to /etc/dockerhub-exporter-files
+files: {}
+  # web_config.yaml: |
+  #   basic_auth_users:
+  #     example: $2y$05$a.7HgF3w3/V7kXRx9XNK9.klJbvALBvtACWdFTQ6VsC/diXVqToMW
+
+config:
+  # -- (string) Username for DockerHub access
+  username: ~
+
+  # -- Key used within secret for username
+  usernameKey: username
+
+  # -- (string) Password for DockerHub access
+  password: ~
+
+  # -- Key used within secret for password
+  passwordKey: password
+
+  # -- (string) Existing secret to use for credentials
+  existingSecret: ~
+
+exporter:
+  # -- (string) Organizations to scrape metrics from
+  org: ~
+
+  # -- (string) Users to scrape metrics from
+  user: ~
+
+  # -- (string) Repositories to scrape metrics from
+  repo: ~
+
+collector:
+  # -- Enable collector for repos
+  repos: true
+
+...
