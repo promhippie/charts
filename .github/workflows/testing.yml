@@ -31,6 +31,9 @@ jobs:
         with:
           python-version-file: .python-version
 
+      - name: Setup sops
+        uses: nhedger/setup-sops@v2
+
       - name: Setup testing
         id: setup
         uses: helm/chart-testing-action@v2.4.0
@@ -43,6 +46,13 @@ jobs:
         id: plugins
         run: |
           helm plugin install https://github.com/jkroepke/helm-secrets
+
+      - name: Decrypt secrets
+        id: secrets
+        run: |
+          for FILE in $(find stable -iname \*.enc); do
+            helm secrets decrypt ${FILE} > ${FILE%.enc}.yaml
+          done
 
       - name: Detect testing
         id: detect
@@ -67,8 +77,6 @@ jobs:
       - name: Run testing
         id: testing
         if: steps.detect.outputs.changed == 'true'
-        env:
-          HELM_SECRETS_WRAPPER_ENABLED: 'true'
         run: |
           ct install --config ct.yaml --target-branch ${{ github.event.repository.default_branch }}
 
