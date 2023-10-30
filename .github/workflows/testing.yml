@@ -6,6 +6,8 @@ name: testing
     branches:
       - master
 
+permissions: read-all
+
 jobs:
   testing:
     runs-on: ubuntu-latest

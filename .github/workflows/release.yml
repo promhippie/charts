@@ -7,19 +7,31 @@ name: release
     branches:
       - master
 
+permissions:
+  contents: read
+
 jobs:
   release:
     runs-on: ubuntu-latest
     if: github.repository == 'promhippie/charts'
 
-    permissions:
-      contents: write
-
     steps:
+      - name: Generate token
+        id: token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.TOKEN_EXCHANGE_APP }}
+          installation_retrieval_mode: id
+          installation_retrieval_payload: ${{ secrets.TOKEN_EXCHANGE_INSTALL }}
+          private_key: ${{ secrets.TOKEN_EXCHANGE_KEY }}
+          permissions: >-
+            {"contents": "write", "packages": "write"}
+
       - name: Checkout source
         id: source
         uses: actions/checkout@v4
         with:
+          token: ${{ steps.token.outputs.token }}
           fetch-depth: 0
 
       - name: Setup helm
@@ -55,7 +67,7 @@ jobs:
         id: releaser
         uses: helm/chart-releaser-action@v1.5.0
         env:
-          CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CR_TOKEN: ${{ steps.token.outputs.token }}
           CR_KEYRING: secring.gpg
           CR_PASSPHRASE_FILE: passphrase
         with:
@@ -64,7 +76,7 @@ jobs:
 
       - name: Push charts
         run: |
-          echo "${{ secrets.BOT_ACCESS_TOKEN }}" | helm registry login --username bothippie --password-stdin ghcr.io
+          echo "${{ steps.token.outputs.token }}" | helm registry login --username bothippie --password-stdin ghcr.io
 
           for pkg in .cr-release-packages/*.tgz; do
             if [ -z "${pkg:-}" ]; then
