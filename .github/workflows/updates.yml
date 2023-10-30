@@ -11,12 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository == 'promhippie/charts'
 
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
     steps:
       - name: Checkout source
         id: source
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.BOT_ACCESS_TOKEN }}
           fetch-depth: 0
 
       - name: Setup golang
@@ -39,14 +43,14 @@ jobs:
           title: "chore: updated versions"
           body: "New versions found, please review!"
           assignees: tboerger
-          token: ${{ secrets.BOT_ACCESS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create issue
         id: issue
         if: failure()
         uses: dblock/create-a-github-issue@v3
         env:
-          GITHUB_TOKEN: ${{ secrets.BOT_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_SERVER_URL: ${ github.server_url }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_RUN_ID: ${{ github.run_id }}
