@@ -12,9 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository == 'promhippie/charts'
 
-    permissions:
-      contents: write
-      packages: write
+    permissions: write-all
 
     steps:
       - name: Checkout source
