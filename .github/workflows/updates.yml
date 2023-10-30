@@ -6,9 +6,7 @@ name: updates
   schedule:
     - cron: "0 8 * * *"
 
-permissions:
-  contents: read
-  issues: write
+permissions: read-all
 
 jobs:
   updates:
@@ -25,7 +23,7 @@ jobs:
           installation_retrieval_payload: ${{ secrets.TOKEN_EXCHANGE_INSTALL }}
           private_key: ${{ secrets.TOKEN_EXCHANGE_KEY }}
           permissions: >-
-            {"contents": "write", "pull_requests": "write"}
+            {"contents": "write", "pull_requests": "write", "issues": "write"}
 
       - name: Checkout source
         id: source
@@ -61,7 +59,7 @@ jobs:
         if: failure()
         uses: dblock/create-a-github-issue@v3
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.token.outputs.token }}
           GITHUB_SERVER_URL: ${ github.server_url }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_RUN_ID: ${{ github.run_id }}

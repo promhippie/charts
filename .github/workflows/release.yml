@@ -7,8 +7,7 @@ name: release
     branches:
       - master
 
-permissions:
-  contents: read
+permissions: read-all
 
 jobs:
   release:
@@ -76,7 +75,7 @@ jobs:
 
       - name: Push charts
         run: |
-          echo "${{ secrets.BOT_ACCESS_TOKEN }}" | helm registry login --username bothippie --password-stdin ghcr.io
+          echo "${{ steps.token.outputs.token }}" | helm registry login --username promhippie --password-stdin ghcr.io
 
           for pkg in .cr-release-packages/*.tgz; do
             if [ -z "${pkg:-}" ]; then
