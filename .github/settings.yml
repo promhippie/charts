@@ -66,6 +66,7 @@ branches:
       restrictions:
         apps:
           - renovate
+          - promhippie
         users: []
         teams:
           - admins
