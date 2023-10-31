@@ -56,7 +56,7 @@ jobs:
         id: releaser
         uses: helm/chart-releaser-action@v1.5.0
         env:
-          CR_TOKEN: ${{ steps.token.outputs.token }}
+          CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CR_KEYRING: secring.gpg
           CR_PASSPHRASE_FILE: passphrase
         with:
