@@ -61,7 +61,7 @@ jobs:
       - name: Detect testing
         id: detect
         run: |
-          CHANGED=$(ct list-changed --config ct.yaml --target-branch ${{ github.event.repository.default_branch }})
+          CHANGED=$(ct list-changed --config ct.yaml)
 
           if [[ -n "${CHANGED}" ]]; then
             echo "changed=true" >> "${GITHUB_OUTPUT}"
@@ -71,7 +71,7 @@ jobs:
         id: linting
         if: steps.detect.outputs.changed == 'true'
         run: |
-          ct lint --config ct.yaml --target-branch ${{ github.event.repository.default_branch }}
+          ct lint --config ct.yaml
 
       - name: Create kind
         id: kind
@@ -82,6 +82,6 @@ jobs:
         id: testing
         if: steps.detect.outputs.changed == 'true'
         run: |
-          ct install --config ct.yaml --target-branch ${{ github.event.repository.default_branch }}
+          ct install --config ct.yaml
 
 ...
