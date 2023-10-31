@@ -8,45 +8,31 @@ name: automerge
       - master
 
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
 
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    if: github.repository == 'promhippie/charts'
+    if: github.actor == 'dependabot[bot]'
 
     steps:
-      - name: Generate token
-        id: token
-        uses: tibdex/github-app-token@v2
+      - name: Fetch metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v1
         with:
-          app_id: ${{ secrets.TOKEN_EXCHANGE_APP }}
-          installation_retrieval_mode: id
-          installation_retrieval_payload: ${{ secrets.TOKEN_EXCHANGE_INSTALL }}
-          private_key: ${{ secrets.TOKEN_EXCHANGE_KEY }}
-          permissions: >-
-            {"contents": "write", "pull_requests": "write", "issues": "write"}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Approve request
+        id: approve
+        run: gh pr review --approve "${{github.event.pull_request.html_url}}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Enable automerge
-        id: dependabot
-        uses: ahmadnassri/action-dependabot-auto-merge@v2
-        with:
-          github-token: ${{ steps.token.outputs.token }}
-          target: major
-
-      - name: Create issue
-        id: issue
-        if: failure()
-        uses: dblock/create-a-github-issue@v3
+        id: automerge
+        run: gh pr merge --rebase --auto "${{github.event.pull_request.html_url}}"
         env:
-          GITHUB_TOKEN: ${{ steps.token.outputs.token }}
-          GITHUB_SERVER_URL: ${ github.server_url }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_RUN_ID: ${{ github.run_id }}
-          GITHUB_RUN_ATTEMPT: ${{ github.run_attempt }}
-        with:
-          filename: .github/workflow-issue.md
-          update_existing: true
-          search_existing: open
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 ...

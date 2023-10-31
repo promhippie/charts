@@ -8,8 +8,7 @@ name: helmdocs
       - master
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
   helmdocs:
@@ -26,7 +25,7 @@ jobs:
           installation_retrieval_payload: ${{ secrets.TOKEN_EXCHANGE_INSTALL }}
           private_key: ${{ secrets.TOKEN_EXCHANGE_KEY }}
           permissions: >-
-            {"contents": "write", "pull_requests": "write", "issues": "write"}
+            {"contents": "write"}
 
       - name: Checkout source
         id: source
@@ -49,47 +48,7 @@ jobs:
           author_email: github@webhippie.de
           add: stable/
           message: "docs: automated readme updates"
-          push: false
+          push: true
           commit: --signoff
-
-      - name: Create request
-        id: request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          branch: update/helmdoc
-          delete-branch: true
-          title: "docs: automated helmdoc updates"
-          body: "New helmdoc generated, automerge should handle that!"
-          labels: docs
-          token: ${{ steps.token.outputs.token }}
-
-      - name: Approve request
-        id: approve
-        if: steps.request.outputs.pull-request-operation == 'created'
-        run: gh pr review --approve "${{ steps.request.outputs.pull-request-number }}"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Enable automerge
-        id: automerge
-        if: steps.request.outputs.pull-request-operation == 'created'
-        run: gh pr merge --rebase --auto "${{ steps.request.outputs.pull-request-number }}"
-        env:
-          GH_TOKEN: ${{ steps.token.outputs.token }}
-
-      - name: Create issue
-        id: issue
-        if: failure()
-        uses: dblock/create-a-github-issue@v3
-        env:
-          GITHUB_TOKEN: ${{ steps.token.outputs.token }}
-          GITHUB_SERVER_URL: ${ github.server_url }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_RUN_ID: ${{ github.run_id }}
-          GITHUB_RUN_ATTEMPT: ${{ github.run_attempt }}
-        with:
-          filename: .github/workflow-issue.md
-          update_existing: true
-          search_existing: open
 
 ...
