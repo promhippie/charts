@@ -75,7 +75,7 @@ jobs:
         if: steps.request.outputs.pull-request-operation == 'created'
         run: gh pr merge --rebase --auto "${{ steps.request.outputs.pull-request-number }}"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ steps.token.outputs.token }}
 
       - name: Create issue
         id: issue
