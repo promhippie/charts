@@ -56,10 +56,10 @@ jobs:
         id: request
         uses: peter-evans/create-pull-request@v5
         with:
-          branch: update/readme
+          branch: update/helmdoc
           delete-branch: true
-          title: "docs: automated readme updates"
-          body: "New readmes generated, automerge should handle that!"
+          title: "docs: automated helmdoc updates"
+          body: "New helmdoc generated, automerge should handle that!"
           labels: docs
           token: ${{ steps.token.outputs.token }}
 

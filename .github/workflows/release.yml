@@ -76,7 +76,7 @@ jobs:
 
       - name: Push charts
         run: |
-          helm registry login --username "${{ github.actor }}" --password "${{ steps.token.outputs.token }}" ghcr.io
+          echo "${{ secrets.BOT_ACCESS_TOKEN }}" | helm registry login --username bothippie --password-from-stdin ghcr.io
 
           for pkg in .cr-release-packages/*.tgz; do
             if [ -z "${pkg:-}" ]; then
