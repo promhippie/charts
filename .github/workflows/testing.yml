@@ -6,7 +6,8 @@ name: testing
     branches:
       - master
 
-permissions: read-all
+permissions:
+  contents: read
 
 jobs:
   testing:

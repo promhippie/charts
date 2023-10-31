@@ -6,7 +6,9 @@ name: updates
   schedule:
     - cron: "0 8 * * *"
 
-permissions: read-all
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   updates:
@@ -47,12 +49,26 @@ jobs:
         id: request
         uses: peter-evans/create-pull-request@v5
         with:
-          branch: updated-versions
+          branch: update/versions
           delete-branch: true
-          title: "chore: updated versions"
-          body: "New versions found, please review!"
-          assignees: tboerger
+          title: "chore: automated version updates"
+          body: "New versions generated, automerge should handle that!"
+          labels: renovate
           token: ${{ steps.token.outputs.token }}
+
+      - name: Approve request
+        id: approve
+        if: steps.request.outputs.pull-request-operation == 'created'
+        run: gh pr review --approve "${{ steps.request.outputs.pull-request-number }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Enable automerge
+        id: automerge
+        if: steps.request.outputs.pull-request-operation == 'created'
+        run: gh pr merge --rebase --auto "${{ steps.request.outputs.pull-request-number }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create issue
         id: issue
