@@ -16,22 +16,11 @@ jobs:
     if: github.repository == 'promhippie/charts'
 
     steps:
-      - name: Generate token
-        id: token
-        uses: tibdex/github-app-token@v2
-        with:
-          app_id: ${{ secrets.TOKEN_EXCHANGE_APP }}
-          installation_retrieval_mode: id
-          installation_retrieval_payload: ${{ secrets.TOKEN_EXCHANGE_INSTALL }}
-          private_key: ${{ secrets.TOKEN_EXCHANGE_KEY }}
-          permissions: >-
-            {"contents": "write"}
-
       - name: Checkout source
         id: source
         uses: actions/checkout@v4
         with:
-          token: ${{ steps.token.outputs.token }}
+          token: ${{ secrets.BOT_ACCESS_TOKEN }}
           fetch-depth: 0
 
       - name: Update readme
@@ -47,7 +36,7 @@ jobs:
           author_name: GitHub Actions
           author_email: github@webhippie.de
           add: stable/
-          message: "docs: automated readme updates"
+          message: "docs: automated readme updates [skip ci]"
           push: true
           commit: --signoff
 
