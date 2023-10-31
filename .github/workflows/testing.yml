@@ -39,7 +39,7 @@ jobs:
 
       - name: Setup testing
         id: setup
-        uses: helm/chart-testing-action@main
+        uses: helm/chart-testing-action@v2.5.0
 
       - name: Setup helm
         id: helm
