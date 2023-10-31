@@ -43,8 +43,6 @@ jobs:
         id: commit
         uses: EndBug/add-and-commit@v9
         with:
-          author_name: GitHub Actions
-          author_email: github@webhippie.de
           add: stable/
           message: "docs: automated readme update [skip ci]"
           push: true
