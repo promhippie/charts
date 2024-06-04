@@ -2,7 +2,7 @@ module github.com/promhippie/charts
 
 go 1.22.0
 
-toolchain go1.22.3
+toolchain go1.22.4
 
 require (
 	github.com/go-git/go-git/v5 v5.12.0
