@@ -1,6 +1,6 @@
 # github-exporter
 
-![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.0.0](https://img.shields.io/badge/AppVersion-4.0.0-informational?style=flat-square)
+![Version: 5.0.1](https://img.shields.io/badge/Version-5.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.0.0](https://img.shields.io/badge/AppVersion-4.0.0-informational?style=flat-square)
 
 A Helm chart for github-exporter
 
@@ -43,7 +43,8 @@ helm install github-exporter promhippie/github-exporter
 | collector.orgs | bool | `true` | Enable collector for orgs |
 | collector.repos | bool | `true` | Enable collector for repos |
 | collector.runners | bool | `false` | Enable collector for runners |
-| collector.workflows | bool | `false` | Enable collector for workflows |
+| collector.workflow_jobs | bool | `false` | Enable collector for workflow jobs |
+| collector.workflow_runs | bool | `false` | Enable collector for workflow runs |
 | config.appId | number | `nil` | App ID used for GitHub app |
 | config.appIdKey | string | `"appId"` | Key used within secret for appId |
 | config.authType | string | `"token"` | Authentication mode, could be `token` or `app` |
@@ -120,5 +121,7 @@ helm install github-exporter promhippie/github-exporter
 | webhook.path | string | `nil` | Path for webhook endpoint |
 | webhook.secret | string | `nil` | Secret for webhook authentication |
 | webhook.secretKey | string | `"secret"` | Key used within secret for webhook |
-| workflow.labels | list | `[]` | List of labels assigned for workflow metrics |
-| workflow.window | string | `"24h"` | Duration to keep workflow metrics |
+| workflow_job.labels | list | `[]` | List of labels assigned for workflow metrics |
+| workflow_job.window | string | `"24h"` | Duration to keep workflow metrics |
+| workflow_run.labels | list | `[]` | List of labels assigned for workflow metrics |
+| workflow_run.window | string | `"24h"` | Duration to keep workflow metrics |
