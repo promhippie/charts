@@ -290,10 +290,20 @@ collector:
   # -- Enable collector for runners
   runners: false
 
-  # -- Enable collector for workflows
-  workflows: false
+  # -- Enable collector for workflow runs
+  workflow_runs: false
 
-workflow:
+  # -- Enable collector for workflow jobs
+  workflow_jobs: false
+
+workflow_run:
+  # -- List of labels assigned for workflow metrics
+  labels: []
+
+  # -- (string) Duration to keep workflow metrics
+  window: 24h
+
+workflow_job:
   # -- List of labels assigned for workflow metrics
   labels: []
 

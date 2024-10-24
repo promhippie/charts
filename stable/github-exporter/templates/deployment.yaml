@@ -132,17 +132,29 @@ spec:
             - name: GITHUB_EXPORTER_COLLECTOR_RUNNERS
               value: "{{ .Values.collector.runners }}"
             {{- end }}
-            {{- if ne .Values.collector.workflows nil }}
-            - name: GITHUB_EXPORTER_COLLECTOR_WORKFLOWS
-              value: "{{ .Values.collector.workflows }}"
+            {{- if ne .Values.collector.workflow_runs nil }}
+            - name: GITHUB_EXPORTER_COLLECTOR_WORKFLOW_RUNS
+              value: "{{ .Values.collector.workflow_runs }}"
             {{- end }}
-            {{- if .Values.workflow.labels }}
-            - name: GITHUB_EXPORTER_WORKFLOWS_LABELS
-              value: "{{ .Values.workflow.labels | join "," }}"
+            {{- if .Values.workflow_run.labels }}
+            - name: GITHUB_EXPORTER_WORKFLOW_RUNS_LABELS
+              value: "{{ .Values.workflow_run.labels | join "," }}"
             {{- end }}
-            {{- if .Values.workflow.window }}
-            - name: GITHUB_EXPORTER_WORKFLOWS_WINDOW
-              value: "{{ .Values.workflow.window }}"
+            {{- if .Values.workflow_run.window }}
+            - name: GITHUB_EXPORTER_WORKFLOW_RUNS_WINDOW
+              value: "{{ .Values.workflow_run.window }}"
+            {{- end }}
+            {{- if ne .Values.collector.workflow_jobs nil }}
+            - name: GITHUB_EXPORTER_COLLECTOR_WORKFLOW_JOBS
+              value: "{{ .Values.collector.workflow_jobs }}"
+            {{- end }}
+            {{- if .Values.workflow_job.labels }}
+            - name: GITHUB_EXPORTER_WORKFLOW_JOBS_LABELS
+              value: "{{ .Values.workflow_job.labels | join "," }}"
+            {{- end }}
+            {{- if .Values.workflow_job.window }}
+            - name: GITHUB_EXPORTER_WORKFLOW_JOBS_WINDOW
+              value: "{{ .Values.workflow_job.window }}"
             {{- end }}
             {{- range $key, $value := .Values.extraEnvSecrets }}
             - name: {{ $key }}
