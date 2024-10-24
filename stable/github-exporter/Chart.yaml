@@ -9,7 +9,7 @@ annotations:
     fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
     url: https://raw.githubusercontent.com/promhippie/charts/master/promhippie.key
 apiVersion: v2
-appVersion: 3.1.2
+appVersion: 4.0.0
 description: A Helm chart for github-exporter
 home: https://promhippie.github.io/github_exporter/
 icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/github.svg
@@ -25,4 +25,4 @@ name: github-exporter
 sources:
 - https://github.com/promhippie/github_exporter
 type: application
-version: 4.1.2
+version: 5.0.0
