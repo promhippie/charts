@@ -34,6 +34,10 @@ labels: {}
 # -- Define additional annotations
 annotations: {}
 
+# -- Update strategy for the deployment
+updateStrategy:
+  type: RollingUpdate
+
 # -- Security context for the deployment
 securityContext: {}
 
