@@ -77,9 +77,16 @@
               "paths": {
                 "type": "array",
                 "items": {
-                  "type": "string"
-                },
-                "description": "Path list"
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string"
+                    },
+                    "pathType": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           }
