@@ -1,6 +1,6 @@
 # jenkins-exporter
 
-![Version: 1.3.0](https://img.shields.io/badge/Version-1.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.0](https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square)
+![Version: 1.4.0](https://img.shields.io/badge/Version-1.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.0](https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square)
 
 A Helm chart for jenkins-exporter
 
@@ -93,3 +93,4 @@ helm install jenkins-exporter promhippie/jenkins-exporter
 | serviceMonitor.telemetryPath | string | `"/metrics"` | Scrape path |
 | serviceMonitor.timeout | string | `"30s"` | Scrape timeout |
 | tolerations | list | `[]` | Tolerations for the deployment |
+| updateStrategy | object | `{"type":"RollingUpdate"}` | Update strategy for the deployment |

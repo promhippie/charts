@@ -1,6 +1,6 @@
 # github-exporter
 
-![Version: 5.1.1](https://img.shields.io/badge/Version-5.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.1.1](https://img.shields.io/badge/AppVersion-4.1.1-informational?style=flat-square)
+![Version: 5.2.0](https://img.shields.io/badge/Version-5.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.1.1](https://img.shields.io/badge/AppVersion-4.1.1-informational?style=flat-square)
 
 A Helm chart for github-exporter
 
@@ -116,6 +116,7 @@ helm install github-exporter promhippie/github-exporter
 | serviceMonitor.telemetryPath | string | `"/metrics"` | Scrape path |
 | serviceMonitor.timeout | string | `"30s"` | Scrape timeout |
 | tolerations | list | `[]` | Tolerations for the deployment |
+| updateStrategy | object | `{"type":"RollingUpdate"}` | Update strategy for the deployment |
 | webhook.enabled | bool | `false` | Enable webhook secret integration |
 | webhook.existingSecret | string | `nil` | Existing secret to use for credentials |
 | webhook.path | string | `nil` | Path for webhook endpoint |
