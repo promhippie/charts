@@ -4,28 +4,38 @@
   "properties": {
     "replicaCount": {
       "type": "integer",
-      "minimum": 1,
+      "description": "Number of replicas for the deployment",
       "default": 1
     },
     "image": {
       "type": "object",
       "properties": {
         "repository": {
-          "type": "string"
+          "type": "string",
+          "description": "Docker image repository"
+        },
+        "tag": {
+          "type": "string",
+          "description": "Docker image tag"
         },
         "pullPolicy": {
           "type": "string",
           "enum": [
             "Always",
-            "Never",
-            "IfNotPresent"
+            "IfNotPresent",
+            "Never"
           ],
           "default": "IfNotPresent"
-        },
-        "tag": {
-          "type": "string"
         }
       }
+    },
+    "nameOverride": {
+      "type": "string",
+      "description": "Override the name of the chart"
+    },
+    "fullnameOverride": {
+      "type": "string",
+      "description": "Override the full name of the chart"
     },
     "service": {
       "type": "object",
@@ -41,9 +51,63 @@
         },
         "port": {
           "type": "integer",
-          "minimum": 1,
-          "maximum": 65535,
+          "description": "Service port number",
           "default": 80
+        }
+      }
+    },
+    "ingress": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "annotations": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "host": {
+                "type": "string"
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string"
+                    },
+                    "pathType": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tls": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "secretName": {
+                "type": "string"
+              },
+              "hosts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -73,6 +137,21 @@
           }
         }
       }
+    },
+    "nodeSelector": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "tolerations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "affinity": {
+      "type": "object",
+      "additionalProperties": true
     }
   }
 }

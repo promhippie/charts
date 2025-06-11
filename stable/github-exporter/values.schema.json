@@ -151,7 +151,10 @@
           "default": false
         },
         "className": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "hosts": {
           "type": "array",
@@ -201,7 +204,10 @@
           "default": "1G"
         },
         "storageClass": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "accessModes": {
           "type": "array",
@@ -213,7 +219,10 @@
           ]
         },
         "existingClaim": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "mountPath": {
           "type": "string",
@@ -268,7 +277,10 @@
           "type": "array"
         },
         "jobLabel": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         }
       }
     },
@@ -322,35 +334,50 @@
           "default": "token"
         },
         "token": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "tokenKey": {
           "type": "string",
           "default": "token"
         },
         "appId": {
-          "type": "integer"
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "appIdKey": {
           "type": "string",
           "default": "appId"
         },
         "installationId": {
-          "type": "integer"
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "installationIdKey": {
           "type": "string",
           "default": "installationId"
         },
         "privateKey": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "privateKeyKey": {
           "type": "string",
           "default": "privateKey"
         },
         "existingSecret": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         }
       }
     },
@@ -362,17 +389,26 @@
           "default": false
         },
         "secret": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "secretKey": {
           "type": "string",
           "default": "secret"
         },
         "existingSecret": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "path": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         }
       }
     },
@@ -392,7 +428,10 @@
           "default": "dsn"
         },
         "existingSecret": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         }
       }
     },
@@ -400,13 +439,22 @@
       "type": "object",
       "properties": {
         "enterprises": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "orgs": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "repos": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         }
       }
     },

@@ -83,15 +83,15 @@
       "properties": {
         "enabled": {
           "type": "boolean",
-          "default": false,
-          "description": "Enable ingress"
+          "description": "Enable ingress controller resource",
+          "default": false
         },
         "annotations": {
           "type": "object",
+          "description": "Ingress annotations",
           "additionalProperties": {
             "type": "string"
-          },
-          "description": "Ingress annotations"
+          }
         },
         "hosts": {
           "type": "array",
@@ -100,7 +100,7 @@
             "properties": {
               "host": {
                 "type": "string",
-                "description": "Hostname"
+                "description": "Hostname for the ingress"
               },
               "paths": {
                 "type": "array",
@@ -108,30 +108,13 @@
                   "type": "object",
                   "properties": {
                     "path": {
-                      "type": "string",
-                      "description": "Path"
+                      "type": "string"
+                    },
+                    "pathType": {
+                      "type": "string"
                     }
                   }
                 }
-              }
-            }
-          }
-        },
-        "tls": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "secretName": {
-                "type": "string",
-                "description": "TLS secret name"
-              },
-              "hosts": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                },
-                "description": "TLS hosts"
               }
             }
           }
