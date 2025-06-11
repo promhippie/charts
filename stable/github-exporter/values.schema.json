@@ -1,0 +1,471 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "nameOverride": {
+      "type": "string",
+      "description": "Override the name"
+    },
+    "fullnameOverride": {
+      "type": "string",
+      "description": "Override the fullname"
+    },
+    "replicaCount": {
+      "type": "integer",
+      "description": "Replicas for the deployment",
+      "default": 1
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "type": "string",
+          "description": "Image repository used by deployment",
+          "default": "quay.io/promhippie/github-exporter"
+        },
+        "tag": {
+          "type": "string",
+          "description": "Optional tag for the repository, defaults to app version"
+        },
+        "pullPolicy": {
+          "type": "string",
+          "description": "Image pull policy",
+          "default": "IfNotPresent"
+        },
+        "pullSecrets": {
+          "type": "array",
+          "description": "Optional name of pull secret if using a private registry",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "serviceAccount": {
+      "type": "object",
+      "properties": {
+        "create": {
+          "type": "boolean",
+          "description": "Create a new service account",
+          "default": true
+        },
+        "name": {
+          "type": "string",
+          "description": "Optional name for an existing service account"
+        }
+      }
+    },
+    "labels": {
+      "type": "object",
+      "description": "Define additional labels"
+    },
+    "annotations": {
+      "type": "object",
+      "description": "Define additional annotations"
+    },
+    "updateStrategy": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "default": "RollingUpdate"
+        }
+      }
+    },
+    "securityContext": {
+      "type": "object",
+      "properties": {
+        "fsGroup": {
+          "type": "integer",
+          "default": 10000
+        }
+      }
+    },
+    "podSecurityContext": {
+      "type": "object",
+      "properties": {
+        "runAsGroup": {
+          "type": "integer",
+          "default": 10000
+        },
+        "runAsUser": {
+          "type": "integer",
+          "default": 10000
+        },
+        "runAsNonRoot": {
+          "type": "boolean",
+          "default": true
+        },
+        "readOnlyRootFilesystem": {
+          "type": "boolean",
+          "default": true
+        },
+        "allowPrivilegeEscalation": {
+          "type": "boolean",
+          "default": false
+        },
+        "capabilities": {
+          "type": "object",
+          "properties": {
+            "drop": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": [
+                "all"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "service": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "default": "ClusterIP"
+        },
+        "port": {
+          "type": "integer",
+          "default": 9504
+        },
+        "internalPort": {
+          "type": "integer",
+          "default": 9504
+        },
+        "annotations": {
+          "type": "object"
+        },
+        "labels": {
+          "type": "object"
+        }
+      }
+    },
+    "ingress": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "className": {
+          "type": "string"
+        },
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "host": {
+                "type": "string"
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string"
+                    },
+                    "pathType": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tls": {
+          "type": "array"
+        },
+        "annotations": {
+          "type": "object"
+        },
+        "labels": {
+          "type": "object"
+        }
+      }
+    },
+    "persistence": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "size": {
+          "type": "string",
+          "default": "1G"
+        },
+        "storageClass": {
+          "type": "string"
+        },
+        "accessModes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "ReadWriteOnce"
+          ]
+        },
+        "existingClaim": {
+          "type": "string"
+        },
+        "mountPath": {
+          "type": "string",
+          "default": "/var/lib/exporter"
+        }
+      }
+    },
+    "resources": {
+      "type": "object"
+    },
+    "nodeSelector": {
+      "type": "object"
+    },
+    "affinity": {
+      "type": "object"
+    },
+    "tolerations": {
+      "type": "array"
+    },
+    "serviceMonitor": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "labels": {
+          "type": "object"
+        },
+        "interval": {
+          "type": "string",
+          "default": "30s"
+        },
+        "telemetryPath": {
+          "type": "string",
+          "default": "/metrics"
+        },
+        "timeout": {
+          "type": "string",
+          "default": "30s"
+        },
+        "metricRelabelings": {
+          "type": "array"
+        },
+        "relabelings": {
+          "type": "array"
+        },
+        "targetLabels": {
+          "type": "array"
+        },
+        "jobLabel": {
+          "type": "string"
+        }
+      }
+    },
+    "prometheusRule": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "additionalLabels": {
+          "type": "object"
+        },
+        "rules": {
+          "type": "array"
+        }
+      }
+    },
+    "envFromSecret": {
+      "type": "string"
+    },
+    "envFromConfigMap": {
+      "type": "string"
+    },
+    "extraEnvVariables": {
+      "type": "object"
+    },
+    "extraEnvSecrets": {
+      "type": "object"
+    },
+    "extraInitContainers": {
+      "type": "array"
+    },
+    "extraVolumes": {
+      "type": "array"
+    },
+    "extraVolumeMounts": {
+      "type": "array"
+    },
+    "files": {
+      "type": "object"
+    },
+    "config": {
+      "type": "object",
+      "properties": {
+        "authType": {
+          "type": "string",
+          "default": "token"
+        },
+        "token": {
+          "type": "string"
+        },
+        "tokenKey": {
+          "type": "string",
+          "default": "token"
+        },
+        "appId": {
+          "type": "integer"
+        },
+        "appIdKey": {
+          "type": "string",
+          "default": "appId"
+        },
+        "installationId": {
+          "type": "integer"
+        },
+        "installationIdKey": {
+          "type": "string",
+          "default": "installationId"
+        },
+        "privateKey": {
+          "type": "string"
+        },
+        "privateKeyKey": {
+          "type": "string",
+          "default": "privateKey"
+        },
+        "existingSecret": {
+          "type": "string"
+        }
+      }
+    },
+    "webhook": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "secret": {
+          "type": "string"
+        },
+        "secretKey": {
+          "type": "string",
+          "default": "secret"
+        },
+        "existingSecret": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        }
+      }
+    },
+    "database": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "dsn": {
+          "type": "string",
+          "default": "sqlite:///var/lib/exporter/database.sqlite3"
+        },
+        "dsnKey": {
+          "type": "string",
+          "default": "dsn"
+        },
+        "existingSecret": {
+          "type": "string"
+        }
+      }
+    },
+    "exporter": {
+      "type": "object",
+      "properties": {
+        "enterprises": {
+          "type": "string"
+        },
+        "orgs": {
+          "type": "string"
+        },
+        "repos": {
+          "type": "string"
+        }
+      }
+    },
+    "collector": {
+      "type": "object",
+      "properties": {
+        "admin": {
+          "type": "boolean",
+          "default": false
+        },
+        "orgs": {
+          "type": "boolean",
+          "default": true
+        },
+        "repos": {
+          "type": "boolean",
+          "default": true
+        },
+        "billing": {
+          "type": "boolean",
+          "default": false
+        },
+        "runners": {
+          "type": "boolean",
+          "default": false
+        },
+        "workflow_runs": {
+          "type": "boolean",
+          "default": false
+        },
+        "workflow_jobs": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "workflow_run": {
+      "type": "object",
+      "properties": {
+        "labels": {
+          "type": "array"
+        },
+        "window": {
+          "type": "string",
+          "default": "24h"
+        }
+      }
+    },
+    "workflow_job": {
+      "type": "object",
+      "properties": {
+        "labels": {
+          "type": "array"
+        },
+        "window": {
+          "type": "string",
+          "default": "24h"
+        }
+      }
+    }
+  }
+}
