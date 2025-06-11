@@ -1,0 +1,305 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "nameOverride": {
+      "type": "string",
+      "description": "Override the name"
+    },
+    "fullnameOverride": {
+      "type": "string",
+      "description": "Override the fullname"
+    },
+    "replicaCount": {
+      "type": "integer",
+      "description": "Replicas for the deployment",
+      "default": 1
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "type": "string",
+          "description": "Image repository used by deployment",
+          "default": "quay.io/promhippie/dockerhub-exporter"
+        },
+        "tag": {
+          "type": "string",
+          "description": "Optional tag for the repository, defaults to app version"
+        },
+        "pullPolicy": {
+          "type": "string",
+          "enum": [
+            "Always",
+            "IfNotPresent",
+            "Never"
+          ],
+          "default": "IfNotPresent"
+        },
+        "pullSecrets": {
+          "type": "array",
+          "description": "Optional name of pull secret if using a private registry",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "serviceAccount": {
+      "type": "object",
+      "properties": {
+        "create": {
+          "type": "boolean",
+          "description": "Create a new service account",
+          "default": true
+        },
+        "name": {
+          "type": "string",
+          "description": "Optional name for an existing service account"
+        }
+      }
+    },
+    "labels": {
+      "type": "object",
+      "description": "Define additional labels"
+    },
+    "annotations": {
+      "type": "object",
+      "description": "Define additional annotations"
+    },
+    "securityContext": {
+      "type": "object",
+      "description": "Security context for the deployment"
+    },
+    "podSecurityContext": {
+      "type": "object",
+      "properties": {
+        "runAsGroup": {
+          "type": "integer",
+          "default": 10000
+        },
+        "runAsUser": {
+          "type": "integer",
+          "default": 10000
+        },
+        "runAsNonRoot": {
+          "type": "boolean",
+          "default": true
+        },
+        "readOnlyRootFilesystem": {
+          "type": "boolean",
+          "default": true
+        },
+        "allowPrivilegeEscalation": {
+          "type": "boolean",
+          "default": false
+        },
+        "capabilities": {
+          "type": "object",
+          "properties": {
+            "drop": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "service": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "default": "ClusterIP"
+        },
+        "port": {
+          "type": "integer",
+          "default": 9505
+        },
+        "internalPort": {
+          "type": "integer",
+          "default": 9505
+        },
+        "annotations": {
+          "type": "object"
+        },
+        "labels": {
+          "type": "object"
+        }
+      }
+    },
+    "ingress": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "className": {
+          "type": "string"
+        },
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "host": {
+                "type": "string"
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string"
+                    },
+                    "pathType": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tls": {
+          "type": "array"
+        },
+        "annotations": {
+          "type": "object"
+        },
+        "labels": {
+          "type": "object"
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "description": "Resources for the deployment"
+    },
+    "nodeSelector": {
+      "type": "object",
+      "description": "Node selector for the deployment"
+    },
+    "affinity": {
+      "type": "object",
+      "description": "Affinity for the deployment"
+    },
+    "tolerations": {
+      "type": "array",
+      "description": "Tolerations for the deployment"
+    },
+    "serviceMonitor": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "labels": {
+          "type": "object"
+        },
+        "interval": {
+          "type": "string",
+          "default": "30s"
+        },
+        "telemetryPath": {
+          "type": "string",
+          "default": "/metrics"
+        },
+        "timeout": {
+          "type": "string",
+          "default": "30s"
+        },
+        "metricRelabelings": {
+          "type": "array"
+        },
+        "relabelings": {
+          "type": "array"
+        },
+        "targetLabels": {
+          "type": "array"
+        },
+        "jobLabel": {
+          "type": "string"
+        }
+      }
+    },
+    "config": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Username for DockerHub access"
+        },
+        "usernameKey": {
+          "type": "string",
+          "default": "username"
+        },
+        "password": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Password for DockerHub access"
+        },
+        "passwordKey": {
+          "type": "string",
+          "default": "password"
+        },
+        "existingSecret": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Existing secret to use for credentials"
+        }
+      }
+    },
+    "exporter": {
+      "type": "object",
+      "properties": {
+        "org": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Organizations to scrape metrics from"
+        },
+        "user": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Users to scrape metrics from"
+        },
+        "repo": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Repositories to scrape metrics from"
+        }
+      }
+    },
+    "collector": {
+      "type": "object",
+      "properties": {
+        "repos": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable collector for repos"
+        }
+      }
+    }
+  }
+}
