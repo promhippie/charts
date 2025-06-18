@@ -9,7 +9,7 @@ annotations:
     fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
     url: https://raw.githubusercontent.com/promhippie/charts/master/promhippie.key
 apiVersion: v2
-appVersion: 1.2.0
+appVersion: 1.2.1
 description: A Helm chart for scw-exporter
 home: https://promhippie.github.io/scw_exporter/
 icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/scaleway.svg
@@ -26,4 +26,4 @@ name: scw-exporter
 sources:
 - https://github.com/promhippie/scw_exporter
 type: application
-version: 2.4.1
+version: 2.4.2
