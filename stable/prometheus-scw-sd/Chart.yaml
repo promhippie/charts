@@ -27,4 +27,4 @@ name: prometheus-scw-sd
 sources:
 - https://github.com/promhippie/prometheus-scw-sd
 type: application
-version: 1.4.0
+version: 1.4.1
