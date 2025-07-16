@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://www.schemastore.org/github-workflow.json
 name: release
 
 "on":
@@ -18,7 +19,6 @@ jobs:
 
     steps:
       - name: Checkout source
-        id: source
         uses: actions/checkout@v4
         with:
           fetch-depth: 0

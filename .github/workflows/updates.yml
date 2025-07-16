@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://www.schemastore.org/github-workflow.json
 name: updates
 
 "on":
@@ -28,7 +29,6 @@ jobs:
             {"contents": "write", "pull_requests": "write", "issues": "write"}
 
       - name: Checkout source
-        id: source
         uses: actions/checkout@v4
         with:
           token: ${{ steps.token.outputs.token }}
@@ -56,14 +56,12 @@ jobs:
           token: ${{ steps.token.outputs.token }}
 
       - name: Approve request
-        id: approve
         if: steps.request.outputs.pull-request-operation == 'created'
         run: gh pr review --approve "${{ steps.request.outputs.pull-request-number }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Enable automerge
-        id: automerge
         if: steps.request.outputs.pull-request-operation == 'created'
         run: gh pr merge --rebase --auto "${{ steps.request.outputs.pull-request-number }}"
         env:
