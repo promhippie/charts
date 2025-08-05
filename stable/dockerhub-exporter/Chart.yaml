@@ -9,7 +9,7 @@ annotations:
     fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
     url: https://raw.githubusercontent.com/promhippie/charts/master/promhippie.key
 apiVersion: v2
-appVersion: 2.2.0
+appVersion: 2.2.1
 description: A Helm chart for dockerhub-exporter
 home: https://promhippie.github.io/dockerhub_exporter/
 icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/docker.svg
