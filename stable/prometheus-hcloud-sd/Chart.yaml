@@ -28,4 +28,4 @@ name: prometheus-hcloud-sd
 sources:
 - https://github.com/promhippie/prometheus-hcloud-sd
 type: application
-version: 3.2.0
+version: 3.2.1
