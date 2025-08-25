@@ -26,4 +26,4 @@ name: hcloud-exporter
 sources:
 - https://github.com/promhippie/hcloud_exporter
 type: application
-version: 4.2.4
+version: 4.2.5
