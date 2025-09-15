@@ -55,7 +55,6 @@ jobs:
         run: |
           for FILE in $(find stable -iname \*.enc); do
             helm secrets decrypt ${FILE} >| ${FILE%.enc}.yaml
-            echo >> ${FILE%.enc}.yaml
           done
 
       - name: Detect testing
