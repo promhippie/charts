@@ -1,6 +1,6 @@
 # hcloud-exporter
 
-![Version: 4.2.12](https://img.shields.io/badge/Version-4.2.12-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.2.15](https://img.shields.io/badge/AppVersion-3.2.15-informational?style=flat-square)
+![Version: 4.2.13](https://img.shields.io/badge/Version-4.2.13-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.2.15](https://img.shields.io/badge/AppVersion-3.2.15-informational?style=flat-square)
 
 A Helm chart for hcloud-exporter
 
