@@ -1,6 +1,6 @@
 # prometheus-scw-sd
 
-![Version: 2.2.9](https://img.shields.io/badge/Version-2.2.9-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.2.11](https://img.shields.io/badge/AppVersion-2.2.11-informational?style=flat-square)
+![Version: 2.2.10](https://img.shields.io/badge/Version-2.2.10-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.2.12](https://img.shields.io/badge/AppVersion-2.2.12-informational?style=flat-square)
 
 A Helm chart for Prometheus Scaleway SD
 
