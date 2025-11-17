@@ -1,6 +1,6 @@
 # prometheus-hcloud-sd
 
-![Version: 3.2.12](https://img.shields.io/badge/Version-3.2.12-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.2.14](https://img.shields.io/badge/AppVersion-2.2.14-informational?style=flat-square)
+![Version: 3.2.13](https://img.shields.io/badge/Version-3.2.13-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.2.15](https://img.shields.io/badge/AppVersion-2.2.15-informational?style=flat-square)
 
 A Helm chart for Prometheus Hetzner Cloud SD
 
