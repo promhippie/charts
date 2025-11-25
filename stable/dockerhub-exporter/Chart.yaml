@@ -26,4 +26,4 @@ name: dockerhub-exporter
 sources:
 - https://github.com/promhippie/dockerhub_exporter
 type: application
-version: 2.2.9
+version: 2.2.10
