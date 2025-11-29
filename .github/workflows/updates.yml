@@ -14,7 +14,6 @@ permissions:
 jobs:
   updates:
     runs-on: ubuntu-latest
-    if: github.repository == 'promhippie/charts'
 
     steps:
       - name: Generate token
@@ -66,20 +65,5 @@ jobs:
         run: gh pr merge --rebase --auto "${{ steps.request.outputs.pull-request-number }}"
         env:
           GH_TOKEN: ${{ steps.token.outputs.token }}
-
-      - name: Create issue
-        id: issue
-        if: failure()
-        uses: dblock/create-a-github-issue@c5e54b8762a0c4c2cd9330750e30b81bcc369c38 # v3
-        env:
-          GITHUB_TOKEN: ${{ steps.token.outputs.token }}
-          GITHUB_SERVER_URL: ${ github.server_url }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_RUN_ID: ${{ github.run_id }}
-          GITHUB_RUN_ATTEMPT: ${{ github.run_attempt }}
-        with:
-          filename: .github/workflow-issue.md
-          update_existing: true
-          search_existing: open
 
 ...
