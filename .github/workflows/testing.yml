@@ -36,7 +36,9 @@ jobs:
 
       - name: Helm plugins
         run: |
-          helm plugin install https://github.com/jkroepke/helm-secrets
+          helm plugin install https://github.com/jkroepke/helm-secrets/releases/download/v4.7.4/secrets-4.7.4.tgz
+          helm plugin install https://github.com/jkroepke/helm-secrets/releases/download/v4.7.4/secrets-getter-4.7.4.tgz
+          helm plugin install https://github.com/jkroepke/helm-secrets/releases/download/v4.7.4/secrets-post-renderer-4.7.4.tgz
 
       - name: Decrypt secrets
         env:
