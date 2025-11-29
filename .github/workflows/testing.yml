@@ -37,6 +37,7 @@ jobs:
       - name: Import gnupg
         run: |
           curl -fsSL https://github.com/jkroepke.gpg | gpg --import
+          gpg --export > ~/.gnupg/pubring.gpg
 
       - name: Helm plugins
         run: |
