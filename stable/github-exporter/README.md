@@ -1,6 +1,6 @@
 # github-exporter
 
-![Version: 7.0.15](https://img.shields.io/badge/Version-7.0.15-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 6.0.18](https://img.shields.io/badge/AppVersion-6.0.18-informational?style=flat-square)
+![Version: 8.0.0](https://img.shields.io/badge/Version-8.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 7.0.0](https://img.shields.io/badge/AppVersion-7.0.0-informational?style=flat-square)
 
 A Helm chart for github-exporter
 
