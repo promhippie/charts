@@ -9,7 +9,7 @@ annotations:
     fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
     url: https://raw.githubusercontent.com/promhippie/charts/master/promhippie.key
 apiVersion: v2
-appVersion: 2.2.14
+appVersion: 2.3.0
 description: A Helm chart for Prometheus Hetzner SD
 home: https://promhippie.github.io/prometheus-hetzner-sd/
 icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hetzner.svg
