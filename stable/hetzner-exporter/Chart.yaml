@@ -26,4 +26,4 @@ name: hetzner-exporter
 sources:
 - https://github.com/promhippie/hetzner_exporter
 type: application
-version: 2.3.1
+version: 2.3.2
