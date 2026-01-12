@@ -26,4 +26,4 @@ name: prometheus-hetzner-sd
 sources:
 - https://github.com/promhippie/prometheus-hetzner-sd
 type: application
-version: 3.3.1
+version: 3.3.2
