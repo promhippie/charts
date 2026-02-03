@@ -25,4 +25,4 @@ name: github-exporter
 sources:
 - https://github.com/promhippie/github_exporter
 type: application
-version: 9.1.1
+version: 10.0.0
