@@ -3044,6 +3044,39 @@ entries:
         fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
         url: https://raw.githubusercontent.com/promhippie/charts/master/promhippie.key
     apiVersion: v2
+    appVersion: 3.16.0
+    created: "2026-05-18T17:31:37.655297074Z"
+    description: A Helm chart for hcloud-exporter
+    digest: 1107aa5f21742265ddb3848f8343feb85990a3ccb61e757a5ae9efebf5dc76d0
+    home: https://promhippie.github.io/hcloud_exporter/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hetzner.svg
+    keywords:
+    - hetzner
+    - hcloud
+    - prometheus
+    - exporter
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+      url: https://github.com/tboerger
+    name: hcloud-exporter
+    sources:
+    - https://github.com/promhippie/hcloud_exporter
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/hcloud-exporter-4.16.0/hcloud-exporter-4.16.0.tgz
+    version: 4.16.0
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |-
+        - name: Source
+          url: https://github.com/promhippie/hcloud_exporter
+        - name: Chart
+          url: https://github.com/promhippie/charts/tree/master/stable/hcloud-exporter
+      artifacthub.io/signKey: |
+        fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
+        url: https://raw.githubusercontent.com/promhippie/charts/master/promhippie.key
+    apiVersion: v2
     appVersion: 3.15.0
     created: "2026-05-11T20:57:25.702671285Z"
     description: A Helm chart for hcloud-exporter
@@ -4603,6 +4636,39 @@ entries:
         fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
         url: https://raw.githubusercontent.com/promhippie/charts/master/promhippie.key
     apiVersion: v2
+    appVersion: 2.7.0
+    created: "2026-05-18T17:31:37.826013484Z"
+    description: A Helm chart for hetzner-exporter
+    digest: 9240feaed73ca579c7d3359e59aab2a939fc5b9d33263abf3727beb177235655
+    home: https://promhippie.github.io/hetzner_exporter/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hetzner.svg
+    keywords:
+    - docker
+    - hetzner
+    - prometheus
+    - exporter
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+      url: https://github.com/tboerger
+    name: hetzner-exporter
+    sources:
+    - https://github.com/promhippie/hetzner_exporter
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/hetzner-exporter-2.7.0/hetzner-exporter-2.7.0.tgz
+    version: 2.7.0
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |-
+        - name: Source
+          url: https://github.com/promhippie/hetzner_exporter
+        - name: Chart
+          url: https://github.com/promhippie/charts/tree/master/stable/hetzner-exporter
+      artifacthub.io/signKey: |
+        fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
+        url: https://raw.githubusercontent.com/promhippie/charts/master/promhippie.key
+    apiVersion: v2
     appVersion: 2.6.1
     created: "2026-04-20T12:08:50.594358262Z"
     description: A Helm chart for hetzner-exporter
@@ -5694,6 +5760,38 @@ entries:
         fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
         url: https://raw.githubusercontent.com/promhippie/charts/master/promhippie.key
     apiVersion: v2
+    appVersion: 2.7.0
+    created: "2026-05-18T17:31:38.019066191Z"
+    description: A Helm chart for jenkins-exporter
+    digest: dc5769b38da4e2fe5cb082370db8970d15e542d7aecf3f6bb0158214c66103e1
+    home: https://promhippie.github.io/jenkins_exporter/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/jenkins.svg
+    keywords:
+    - jenkins
+    - prometheus
+    - exporter
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+      url: https://github.com/tboerger
+    name: jenkins-exporter
+    sources:
+    - https://github.com/promhippie/jenkins_exporter
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/jenkins-exporter-2.7.0/jenkins-exporter-2.7.0.tgz
+    version: 2.7.0
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |-
+        - name: Source
+          url: https://github.com/promhippie/jenkins_exporter
+        - name: Chart
+          url: https://github.com/promhippie/charts/tree/master/stable/jenkins-exporter
+      artifacthub.io/signKey: |
+        fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
+        url: https://raw.githubusercontent.com/promhippie/charts/master/promhippie.key
+    apiVersion: v2
     appVersion: 2.6.1
     created: "2026-04-20T12:08:50.84879038Z"
     description: A Helm chart for jenkins-exporter
@@ -6740,6 +6838,41 @@ entries:
     - https://github.com/promhippie/charts/releases/download/jenkins-exporter-1.0.0/jenkins-exporter-1.0.0.tgz
     version: 1.0.0
   prometheus-hcloud-sd:
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |-
+        - name: Source
+          url: https://github.com/promhippie/prometheus-hcloud-sd
+        - name: Chart
+          url: https://github.com/promhippie/charts/tree/master/stable/prometheus-hcloud-sd
+      artifacthub.io/signKey: |
+        fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
+        url: https://raw.githubusercontent.com/promhippie/charts/master/promhippie.key
+    apiVersion: v2
+    appVersion: 2.15.0
+    created: "2026-05-18T17:31:38.215339741Z"
+    description: A Helm chart for Prometheus Hetzner Cloud SD
+    digest: 6c00f85b71e608604e911eb927ed0f2ae40de943ec7f0fd68768a4a510387a89
+    home: https://promhippie.github.io/prometheus-hcloud-sd/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hetzner.svg
+    keywords:
+    - hetzner
+    - cloud
+    - hcloud
+    - prometheus
+    - sd
+    - service-discovery
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+      url: https://github.com/tboerger
+    name: prometheus-hcloud-sd
+    sources:
+    - https://github.com/promhippie/prometheus-hcloud-sd
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/prometheus-hcloud-sd-3.15.0/prometheus-hcloud-sd-3.15.0.tgz
+    version: 3.15.0
   - annotations:
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |-
@@ -8225,6 +8358,39 @@ entries:
         fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
         url: https://raw.githubusercontent.com/promhippie/charts/master/promhippie.key
     apiVersion: v2
+    appVersion: 2.7.0
+    created: "2026-05-18T17:31:38.413653278Z"
+    description: A Helm chart for Prometheus Hetzner SD
+    digest: a4627e04adbd6d4b0e1d75bf05fd81e963f937b2ddca81e0dc30a27c759d786b
+    home: https://promhippie.github.io/prometheus-hetzner-sd/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hetzner.svg
+    keywords:
+    - hetzner
+    - prometheus
+    - sd
+    - service-discovery
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+      url: https://github.com/tboerger
+    name: prometheus-hetzner-sd
+    sources:
+    - https://github.com/promhippie/prometheus-hetzner-sd
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/prometheus-hetzner-sd-3.7.0/prometheus-hetzner-sd-3.7.0.tgz
+    version: 3.7.0
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |-
+        - name: Source
+          url: https://github.com/promhippie/prometheus-hetzner-sd
+        - name: Chart
+          url: https://github.com/promhippie/charts/tree/master/stable/prometheus-hetzner-sd
+      artifacthub.io/signKey: |
+        fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
+        url: https://raw.githubusercontent.com/promhippie/charts/master/promhippie.key
+    apiVersion: v2
     appVersion: 2.6.1
     created: "2026-04-20T12:08:51.360863453Z"
     description: A Helm chart for Prometheus Hetzner SD
@@ -9305,6 +9471,40 @@ entries:
     - https://github.com/promhippie/charts/releases/download/prometheus-hetzner-sd-1.0.0/prometheus-hetzner-sd-1.0.0.tgz
     version: 1.0.0
   prometheus-scw-sd:
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |-
+        - name: Source
+          url: https://github.com/promhippie/prometheus-scw-sd
+        - name: Chart
+          url: https://github.com/promhippie/charts/tree/master/stable/prometheus-scw-sd
+      artifacthub.io/signKey: |
+        fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
+        url: https://raw.githubusercontent.com/promhippie/charts/master/promhippie.key
+    apiVersion: v2
+    appVersion: 2.7.0
+    created: "2026-05-18T17:31:38.578567419Z"
+    description: A Helm chart for Prometheus Scaleway SD
+    digest: f9bbfdd742d443c8835286860cd998421f727a4143c3e3716a0a3dde06b7d2d4
+    home: https://promhippie.github.io/prometheus-scw-sd/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/scaleway.svg
+    keywords:
+    - scw
+    - scaleway
+    - prometheus
+    - sd
+    - service-discovery
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+      url: https://github.com/tboerger
+    name: prometheus-scw-sd
+    sources:
+    - https://github.com/promhippie/prometheus-scw-sd
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/prometheus-scw-sd-2.7.0/prometheus-scw-sd-2.7.0.tgz
+    version: 2.7.0
   - annotations:
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |-
@@ -11209,6 +11409,39 @@ entries:
         fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
         url: https://raw.githubusercontent.com/promhippie/charts/master/promhippie.key
     apiVersion: v2
+    appVersion: 2.7.0
+    created: "2026-05-18T17:31:38.770421537Z"
+    description: A Helm chart for scw-exporter
+    digest: 5530b457df8a483bc617d5431dd6062abe1840466278022f0c9475dffbdf5610
+    home: https://promhippie.github.io/scw_exporter/
+    icon: https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/scaleway.svg
+    keywords:
+    - scw
+    - scaleway
+    - prometheus
+    - exporter
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+      url: https://github.com/tboerger
+    name: scw-exporter
+    sources:
+    - https://github.com/promhippie/scw_exporter
+    type: application
+    urls:
+    - https://github.com/promhippie/charts/releases/download/scw-exporter-3.7.0/scw-exporter-3.7.0.tgz
+    version: 3.7.0
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |-
+        - name: Source
+          url: https://github.com/promhippie/scw_exporter
+        - name: Chart
+          url: https://github.com/promhippie/charts/tree/master/stable/scw-exporter
+      artifacthub.io/signKey: |
+        fingerprint: B8BB213D9E131E46D2EBE22E44E93172C6FDE7E6
+        url: https://raw.githubusercontent.com/promhippie/charts/master/promhippie.key
+    apiVersion: v2
     appVersion: 2.6.1
     created: "2026-04-20T12:08:51.817683015Z"
     description: A Helm chart for scw-exporter
@@ -12349,4 +12582,4 @@ entries:
     urls:
     - https://github.com/promhippie/charts/releases/download/scw-exporter-1.0.0/scw-exporter-1.0.0.tgz
     version: 1.0.0
-generated: "2026-05-12T10:40:03.632603895Z"
+generated: "2026-05-18T17:31:38.771794689Z"
