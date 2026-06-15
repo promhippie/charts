@@ -26,4 +26,4 @@ name: scw-exporter
 sources:
 - https://github.com/promhippie/scw_exporter
 type: application
-version: 3.8.1
+version: 3.9.0
