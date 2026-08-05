@@ -8,6 +8,10 @@ name: release
     branches:
       - master
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
   packages: write
@@ -22,18 +26,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup helm
-        uses: azure/setup-helm@v5
+      - name: Install tools
+        uses: jdx/mise-action@v4
 
-      - name: Configure Git
+      - name: Git author
         run: |
           git config user.name "GitHub Actions"
           git config user.email "github@webhippie.de"
 
       - name: Update readme
-        uses: docker://jnorwood/helm-docs:v1.14.2@sha256:7e562b49ab6b1dbc50c3da8f2dd6ffa8a5c6bba327b1c6335cc15ce29267979c
-        with:
-          entrypoint: helm-docs
+        run: helm-docs
 
       - name: Write secring
         run: |

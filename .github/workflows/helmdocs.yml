@@ -16,6 +16,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Setup nodejs
+        uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+
       - name: Generate token
         id: token
         uses: actions/create-github-app-token@v3
@@ -27,14 +32,14 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v7
         with:
-          token: ${{ steps.token.outputs.token }}
           fetch-depth: 0
+          token: ${{ steps.token.outputs.token }}
+
+      - name: Install tools
+        uses: jdx/mise-action@v4
 
       - name: Update readme
-        id: docs
-        uses: docker://jnorwood/helm-docs:v1.14.2@sha256:7e562b49ab6b1dbc50c3da8f2dd6ffa8a5c6bba327b1c6335cc15ce29267979c
-        with:
-          entrypoint: helm-docs
+        run: helm-docs
 
       - name: Source rebase
         run: git pull --autostash --rebase
@@ -45,7 +50,7 @@ jobs:
           author_name: GitHub Actions
           author_email: github@webhippie.de
           add: stable/
-          message: "docs: automated readme updates [skip ci]"
+          message: "docs: automated readme update [skip ci]"
           push: true
           commit: --signoff
 
