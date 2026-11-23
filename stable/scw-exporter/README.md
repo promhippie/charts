@@ -1,6 +1,6 @@
 # scw-exporter
 
-![Version: 3.20.4](https://img.shields.io/badge/Version-3.20.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.20.4](https://img.shields.io/badge/AppVersion-2.20.4-informational?style=flat-square)
+![Version: 3.21.0](https://img.shields.io/badge/Version-3.21.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.21.0](https://img.shields.io/badge/AppVersion-2.21.0-informational?style=flat-square)
 
 A Helm chart for scw-exporter
 
